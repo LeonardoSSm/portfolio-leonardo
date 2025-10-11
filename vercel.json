@@ -1,9 +1,4 @@
 {
-  "version": 2,
-  "builds": [{ "src": "index.html", "use": "@vercel/static-build" }],
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "framework": "vite",
   "headers": [
     {
       "source": "/(.*)",
