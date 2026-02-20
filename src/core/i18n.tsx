@@ -71,8 +71,8 @@ type Dictionary = {
 }
 
 const ptBr: Dictionary = {
-  metaTitle: 'Leonardo Sousa | Portfólio Backend Java',
-  ownerRole: 'Backend Java Engineer',
+  metaTitle: 'Leonardo Sousa | Backend & Full Stack',
+  ownerRole: 'Backend & Full Stack Engineer',
   languageLabel: 'Idioma',
   nav: [
     { href: '#home', label: 'Início' },
@@ -85,36 +85,39 @@ const ptBr: Dictionary = {
   ] as const,
   home: {
     id: 'home',
-    badge: 'Disponível para novos desafios backend',
-    title: 'Backend Java, arquitetura limpa e soluções que escalam sem virar dívida técnica.',
-    stackLine: 'Spring Boot · Java 21 · Docker · PostgreSQL · CI/CD · AWS (iniciante)',
+    badge: 'Disponível para freelas e oportunidades full stack',
+    title: 'Construo backends seguros em múltiplas linguagens e também entrego frontend completo quando o produto precisa.',
+    stackLine: 'Backend multi-stack · Frontend React · PostgreSQL · Docker · CI/CD · Observabilidade',
     primaryCta: 'Ver projetos',
-    secondaryCta: 'Entrar em contato',
+    secondaryCta: 'Falar sobre projeto',
     buildLog: ['// Pipeline recente', '$ docker compose up -d', '$ mvn -q test', '> 142 testes OK'],
     highlights: [
-      'Arquitetura modular orientada a domínio',
-      'Observabilidade e qualidade por padrão',
-      'Foco em manter entrega contínua sem retrabalho',
+      '142+ testes automatizados em pipelines recentes',
+      'Arquitetura modular orientada a domínio (DDD + SOLID)',
+      'Atuação full stack: backend, frontend e entrega contínua',
     ] as const,
   },
   about: {
     id: 'about',
     title: 'Sobre',
-    lead: 'Engenharia de software aplicada ao contexto real de produto.',
-    body: 'Desenvolvedor backend focado em Java e boas práticas (SOLID, TDD, DDD). Trabalho com APIs modulares, observabilidade, testes e pipelines de entrega contínua para manter evolução com previsibilidade.',
+    lead: 'Código limpo com foco em resultado de negócio e estabilidade operacional.',
+    body: 'Sou desenvolvedor backend com atuação em múltiplas linguagens e foco em arquitetura limpa e qualidade de entrega. Também desenvolvo frontend e consigo conduzir projetos de ponta a ponta como full stack.',
     pillars: [
-      'Modelagem orientada a regras de negócio',
-      'APIs seguras com autenticação e autorização robusta',
-      'Processos automatizados de build e deploy',
+      'APIs com contratos claros, versionamento e baixa acoplagem',
+      'Camadas de segurança com autenticação, permissões e auditoria',
+      'Entrega contínua com testes, métricas e observabilidade',
     ] as const,
   },
   skills: {
     id: 'skills',
     title: 'Especialidades',
-    lead: 'Stack focada em backend resiliente, integração e operação confiável.',
+    lead: 'Stack orientada a backend resiliente, integração entre serviços e operação confiável.',
     items: [
-      'Java 21 / Spring Boot',
+      'Java / Spring Boot',
+      'Node.js / NestJS',
+      'TypeScript / JavaScript',
       'REST / JPA / Security',
+      'React / Vite',
       'Docker / Docker Compose',
       'PostgreSQL / H2',
       'Mensageria (JMS/ActiveMQ)',
@@ -124,10 +127,10 @@ const ptBr: Dictionary = {
   projects: {
     id: 'projects',
     title: 'Projetos em destaque',
-    lead: 'Casos práticos com foco em arquitetura, qualidade de código e entrega.',
-    featuredLabel: 'Projeto principal',
-    githubLabel: 'Ver GitHub completo',
-    codeLabel: 'Ver código',
+    lead: 'Cases reais com foco em arquitetura, qualidade de código e entrega de valor.',
+    featuredLabel: 'Case em destaque',
+    githubLabel: 'Ver mais no GitHub',
+    codeLabel: 'Abrir repositório',
     items: [
       {
         name: 'TD2 Builder',
@@ -164,7 +167,7 @@ const ptBr: Dictionary = {
   certificates: {
     id: 'certificates',
     title: 'Certificados',
-    lead: 'Evolução contínua em tópicos centrais do ecossistema Java.',
+    lead: 'Aprendizado contínuo em backend moderno, arquitetura e engenharia de software.',
     items: [
       { title: 'Spring Security', issuer: 'DIO' },
       { title: 'REST com Swagger', issuer: 'DIO' },
@@ -174,7 +177,7 @@ const ptBr: Dictionary = {
   blog: {
     id: 'blog',
     title: 'Artigos',
-    lead: 'Anotações técnicas sobre arquitetura, observabilidade e práticas de backend.',
+    lead: 'Conteúdo técnico sobre arquitetura, observabilidade e boas práticas para sistemas reais.',
     items: [
       {
         slug: 'arquitetura-limpa-no-dia-a-dia',
@@ -193,9 +196,9 @@ const ptBr: Dictionary = {
   contact: {
     id: 'contact',
     title: 'Contato',
-    lead: 'Aberto para freelas, propostas de produto e colaborações técnicas.',
-    responseNote: 'Respondo por e-mail e LinkedIn com foco em escopo, prazo e viabilidade técnica.',
-    emailLabel: 'Enviar e-mail',
+    lead: 'Vamos transformar sua ideia em um backend confiável e pronto para crescer.',
+    responseNote: 'Me envie contexto, escopo e prazo. Retorno com uma proposta técnica objetiva.',
+    emailLabel: 'Enviar mensagem',
     linkedinLabel: 'LinkedIn',
     githubLabel: 'GitHub',
   },
@@ -203,8 +206,8 @@ const ptBr: Dictionary = {
 }
 
 const en: Dictionary = {
-  metaTitle: 'Leonardo Sousa | Java Backend Portfolio',
-  ownerRole: 'Backend Java Engineer',
+  metaTitle: 'Leonardo Sousa | Backend & Full Stack',
+  ownerRole: 'Backend & Full Stack Engineer',
   languageLabel: 'Language',
   nav: [
     { href: '#home', label: 'Home' },
@@ -217,36 +220,39 @@ const en: Dictionary = {
   ] as const,
   home: {
     id: 'home',
-    badge: 'Available for backend opportunities',
-    title: 'Java backend, clean architecture, and scalable solutions without technical debt.',
-    stackLine: 'Spring Boot · Java 21 · Docker · PostgreSQL · CI/CD · AWS (beginner)',
+    badge: 'Available for freelance and full-stack opportunities',
+    title: 'I build secure backends across multiple languages and also deliver complete frontend implementations when needed.',
+    stackLine: 'Multi-stack backend · React frontend · PostgreSQL · Docker · CI/CD · Observability',
     primaryCta: 'View projects',
-    secondaryCta: 'Get in touch',
+    secondaryCta: 'Discuss your project',
     buildLog: ['// Latest pipeline', '$ docker compose up -d', '$ mvn -q test', '> 142 tests passed'],
     highlights: [
-      'Domain-oriented modular architecture',
-      'Built-in observability and quality controls',
-      'Continuous delivery mindset with low maintenance cost',
+      '140+ automated tests in recent pipelines',
+      'Domain-oriented modular architecture (DDD + SOLID)',
+      'Full-stack delivery: backend, frontend, and CI/CD',
     ] as const,
   },
   about: {
     id: 'about',
     title: 'About',
-    lead: 'Software engineering aligned with real product constraints.',
-    body: 'Backend developer focused on Java and engineering best practices (SOLID, TDD, DDD). I build modular APIs with observability, testing, and CI/CD pipelines to keep delivery stable and predictable.',
+    lead: 'Clean engineering focused on business impact and production stability.',
+    body: 'I am a backend developer working across multiple languages with a strong focus on clean architecture and delivery quality. I also build frontend applications and can deliver end-to-end projects as a full-stack engineer.',
     pillars: [
-      'Business-rule-first domain modeling',
-      'Secure APIs with robust auth and permission layers',
-      'Automated build and deployment flows',
+      'APIs with clear contracts, versioning, and low coupling',
+      'Security layers with authentication, permissions, and auditing',
+      'Continuous delivery with testing, metrics, and observability',
     ] as const,
   },
   skills: {
     id: 'skills',
     title: 'Core skills',
-    lead: 'Stack focused on resilient backend architecture and reliable operations.',
+    lead: 'Stack focused on resilient backend architecture, service integration, and reliable operations.',
     items: [
-      'Java 21 / Spring Boot',
+      'Java / Spring Boot',
+      'Node.js / NestJS',
+      'TypeScript / JavaScript',
       'REST / JPA / Security',
+      'React / Vite',
       'Docker / Docker Compose',
       'PostgreSQL / H2',
       'Messaging (JMS/ActiveMQ)',
@@ -256,10 +262,10 @@ const en: Dictionary = {
   projects: {
     id: 'projects',
     title: 'Featured projects',
-    lead: 'Hands-on systems focused on architecture, maintainability, and delivery.',
-    featuredLabel: 'Main project',
-    githubLabel: 'See full GitHub',
-    codeLabel: 'View code',
+    lead: 'Production-oriented systems focused on architecture, maintainability, and delivery.',
+    featuredLabel: 'Featured case',
+    githubLabel: 'See more on GitHub',
+    codeLabel: 'Open repository',
     items: [
       {
         name: 'TD2 Builder',
@@ -296,7 +302,7 @@ const en: Dictionary = {
   certificates: {
     id: 'certificates',
     title: 'Certificates',
-    lead: 'Continuous learning around key capabilities in the Java ecosystem.',
+    lead: 'Continuous learning across modern backend engineering, architecture, and software delivery.',
     items: [
       { title: 'Spring Security', issuer: 'DIO' },
       { title: 'REST with Swagger', issuer: 'DIO' },
@@ -306,7 +312,7 @@ const en: Dictionary = {
   blog: {
     id: 'blog',
     title: 'Articles',
-    lead: 'Technical notes on architecture, observability, and backend workflows.',
+    lead: 'Technical writing on architecture, observability, and practical backend workflows.',
     items: [
       {
         slug: 'clean-architecture-daily-work',
@@ -325,9 +331,9 @@ const en: Dictionary = {
   contact: {
     id: 'contact',
     title: 'Contact',
-    lead: 'Open to freelance work, product opportunities, and technical collaborations.',
-    responseNote: 'I usually reply via email and LinkedIn to discuss scope, timeline, and technical approach.',
-    emailLabel: 'Send email',
+    lead: 'Let us turn your idea into a reliable backend ready to scale.',
+    responseNote: 'Share your context, scope, and timeline. I will reply with a clear technical approach.',
+    emailLabel: 'Send message',
     linkedinLabel: 'LinkedIn',
     githubLabel: 'GitHub',
   },
