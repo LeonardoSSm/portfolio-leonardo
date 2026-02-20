@@ -105,6 +105,12 @@ const ptBr: Dictionary = {
     codeLabel: 'Ver código',
     items: [
       {
+        name: 'TD2 Builder',
+        desc: 'Plataforma completa para criação e gestão de builds do The Division 2 com API NestJS, painel React, controle de acesso, monitoramento e importação XLSX assíncrona.',
+        tags: ['NestJS', 'Prisma', 'PostgreSQL', 'React', 'Vite', 'TanStack Query'],
+        href: 'https://github.com/LeonardoSSm/td2-builder',
+      },
+      {
         name: 'Sistema Financeiro Modular',
         desc: 'Módulos de contas, usuários e transações com ambiente Docker e fluxo de CI.',
         tags: ['Java', 'Spring', 'Docker'],
@@ -212,6 +218,12 @@ const en: Dictionary = {
     githubLabel: 'See full GitHub',
     codeLabel: 'View code',
     items: [
+      {
+        name: 'TD2 Builder',
+        desc: 'Full platform for The Division 2 build planning with a NestJS API, React dashboard, access control, monitoring, and async XLSX import workflow.',
+        tags: ['NestJS', 'Prisma', 'PostgreSQL', 'React', 'Vite', 'TanStack Query'],
+        href: 'https://github.com/LeonardoSSm/td2-builder',
+      },
       {
         name: 'Modular Financial System',
         desc: 'Accounts, users, and transactions modules with Dockerized environment and CI workflow.',
