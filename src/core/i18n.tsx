@@ -16,25 +16,32 @@ type Dictionary = {
   nav: readonly NavItem[]
   home: {
     id: string
+    badge: string
     title: string
     stackLine: string
     primaryCta: string
     secondaryCta: string
-    buildLog: string[]
+    buildLog: readonly string[]
+    highlights: readonly string[]
   }
   about: {
     id: string
     title: string
+    lead: string
     body: string
+    pillars: readonly string[]
   }
   skills: {
     id: string
     title: string
+    lead: string
     items: readonly string[]
   }
   projects: {
     id: string
     title: string
+    lead: string
+    featuredLabel: string
     githubLabel: string
     codeLabel: string
     items: readonly ProjectItem[]
@@ -42,17 +49,20 @@ type Dictionary = {
   certificates: {
     id: string
     title: string
+    lead: string
     items: readonly CertificateItem[]
   }
   blog: {
     id: string
     title: string
+    lead: string
     items: readonly PostItem[]
   }
   contact: {
     id: string
     title: string
     lead: string
+    responseNote: string
     emailLabel: string
     linkedinLabel: string
     githubLabel: string
@@ -75,20 +85,33 @@ const ptBr: Dictionary = {
   ] as const,
   home: {
     id: 'home',
+    badge: 'Disponível para novos desafios backend',
     title: 'Backend Java, arquitetura limpa e soluções que escalam sem virar dívida técnica.',
     stackLine: 'Spring Boot · Java 21 · Docker · PostgreSQL · CI/CD · AWS (iniciante)',
     primaryCta: 'Ver projetos',
     secondaryCta: 'Entrar em contato',
     buildLog: ['// Pipeline recente', '$ docker compose up -d', '$ mvn -q test', '> 142 testes OK'],
+    highlights: [
+      'Arquitetura modular orientada a domínio',
+      'Observabilidade e qualidade por padrão',
+      'Foco em manter entrega contínua sem retrabalho',
+    ] as const,
   },
   about: {
     id: 'about',
     title: 'Sobre',
+    lead: 'Engenharia de software aplicada ao contexto real de produto.',
     body: 'Desenvolvedor backend focado em Java e boas práticas (SOLID, TDD, DDD). Trabalho com APIs modulares, observabilidade, testes e pipelines de entrega contínua para manter evolução com previsibilidade.',
+    pillars: [
+      'Modelagem orientada a regras de negócio',
+      'APIs seguras com autenticação e autorização robusta',
+      'Processos automatizados de build e deploy',
+    ] as const,
   },
   skills: {
     id: 'skills',
     title: 'Especialidades',
+    lead: 'Stack focada em backend resiliente, integração e operação confiável.',
     items: [
       'Java 21 / Spring Boot',
       'REST / JPA / Security',
@@ -101,6 +124,8 @@ const ptBr: Dictionary = {
   projects: {
     id: 'projects',
     title: 'Projetos em destaque',
+    lead: 'Casos práticos com foco em arquitetura, qualidade de código e entrega.',
+    featuredLabel: 'Projeto principal',
     githubLabel: 'Ver GitHub completo',
     codeLabel: 'Ver código',
     items: [
@@ -139,6 +164,7 @@ const ptBr: Dictionary = {
   certificates: {
     id: 'certificates',
     title: 'Certificados',
+    lead: 'Evolução contínua em tópicos centrais do ecossistema Java.',
     items: [
       { title: 'Spring Security', issuer: 'DIO' },
       { title: 'REST com Swagger', issuer: 'DIO' },
@@ -148,6 +174,7 @@ const ptBr: Dictionary = {
   blog: {
     id: 'blog',
     title: 'Artigos',
+    lead: 'Anotações técnicas sobre arquitetura, observabilidade e práticas de backend.',
     items: [
       {
         slug: 'arquitetura-limpa-no-dia-a-dia',
@@ -167,6 +194,7 @@ const ptBr: Dictionary = {
     id: 'contact',
     title: 'Contato',
     lead: 'Aberto para freelas, propostas de produto e colaborações técnicas.',
+    responseNote: 'Respondo por e-mail e LinkedIn com foco em escopo, prazo e viabilidade técnica.',
     emailLabel: 'Enviar e-mail',
     linkedinLabel: 'LinkedIn',
     githubLabel: 'GitHub',
@@ -189,20 +217,33 @@ const en: Dictionary = {
   ] as const,
   home: {
     id: 'home',
+    badge: 'Available for backend opportunities',
     title: 'Java backend, clean architecture, and scalable solutions without technical debt.',
     stackLine: 'Spring Boot · Java 21 · Docker · PostgreSQL · CI/CD · AWS (beginner)',
     primaryCta: 'View projects',
     secondaryCta: 'Get in touch',
     buildLog: ['// Latest pipeline', '$ docker compose up -d', '$ mvn -q test', '> 142 tests passed'],
+    highlights: [
+      'Domain-oriented modular architecture',
+      'Built-in observability and quality controls',
+      'Continuous delivery mindset with low maintenance cost',
+    ] as const,
   },
   about: {
     id: 'about',
     title: 'About',
+    lead: 'Software engineering aligned with real product constraints.',
     body: 'Backend developer focused on Java and engineering best practices (SOLID, TDD, DDD). I build modular APIs with observability, testing, and CI/CD pipelines to keep delivery stable and predictable.',
+    pillars: [
+      'Business-rule-first domain modeling',
+      'Secure APIs with robust auth and permission layers',
+      'Automated build and deployment flows',
+    ] as const,
   },
   skills: {
     id: 'skills',
     title: 'Core skills',
+    lead: 'Stack focused on resilient backend architecture and reliable operations.',
     items: [
       'Java 21 / Spring Boot',
       'REST / JPA / Security',
@@ -215,6 +256,8 @@ const en: Dictionary = {
   projects: {
     id: 'projects',
     title: 'Featured projects',
+    lead: 'Hands-on systems focused on architecture, maintainability, and delivery.',
+    featuredLabel: 'Main project',
     githubLabel: 'See full GitHub',
     codeLabel: 'View code',
     items: [
@@ -253,6 +296,7 @@ const en: Dictionary = {
   certificates: {
     id: 'certificates',
     title: 'Certificates',
+    lead: 'Continuous learning around key capabilities in the Java ecosystem.',
     items: [
       { title: 'Spring Security', issuer: 'DIO' },
       { title: 'REST with Swagger', issuer: 'DIO' },
@@ -262,6 +306,7 @@ const en: Dictionary = {
   blog: {
     id: 'blog',
     title: 'Articles',
+    lead: 'Technical notes on architecture, observability, and backend workflows.',
     items: [
       {
         slug: 'clean-architecture-daily-work',
@@ -281,6 +326,7 @@ const en: Dictionary = {
     id: 'contact',
     title: 'Contact',
     lead: 'Open to freelance work, product opportunities, and technical collaborations.',
+    responseNote: 'I usually reply via email and LinkedIn to discuss scope, timeline, and technical approach.',
     emailLabel: 'Send email',
     linkedinLabel: 'LinkedIn',
     githubLabel: 'GitHub',

@@ -1,5 +1,12 @@
 import React from 'react'
+import { cn } from '../lib/classnames'
 
-export function Card({ children }: { children: React.ReactNode }) {
-  return <article className="card">{children}</article>
+type Props = React.HTMLAttributes<HTMLElement> & { children: React.ReactNode }
+
+export function Card({ children, className, ...rest }: Props) {
+  return (
+    <article className={cn('card', className)} {...rest}>
+      {children}
+    </article>
+  )
 }

@@ -7,10 +7,10 @@ export function ContactSection() {
   const { t } = useI18n()
 
   return (
-    <Section id={t.contact.id} title={t.contact.title}>
-      <p className="p section-intro">{t.contact.lead}</p>
+    <Section id={t.contact.id} title={t.contact.title} lead={t.contact.lead} className="contact-section">
+      <p className="p section-intro">{t.contact.responseNote}</p>
       <div className="contact-actions">
-        <a className="cta cta-secondary" href={`mailto:${site.email}`}>
+        <a className="cta cta-primary" href={`mailto:${site.email}`}>
           {t.contact.emailLabel}
         </a>
         <a className="cta cta-secondary" href={site.linkedin} target="_blank" rel="noreferrer">

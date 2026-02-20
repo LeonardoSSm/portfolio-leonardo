@@ -10,15 +10,17 @@ import { Container } from '../shared/ui/Container'
 
 export default function App() {
   return (
-    <main>
+    <main id="main-content" className="main-content">
       <Container>
-        <HomeSection />
-        <AboutSection />
-        <SkillsSection />
-        <ProjectsSection />
-        <CertificatesSection />
-        <BlogSection />
-        <ContactSection />
+        <div className="content-stack">
+          <HomeSection />
+          <AboutSection />
+          <SkillsSection />
+          <ProjectsSection />
+          <CertificatesSection />
+          <BlogSection />
+          <ContactSection />
+        </div>
       </Container>
     </main>
   )

@@ -6,11 +6,12 @@ export function SkillsSection() {
   const { t } = useI18n()
 
   return (
-    <Section id={t.skills.id} title={t.skills.title}>
+    <Section id={t.skills.id} title={t.skills.title} lead={t.skills.lead}>
       <ul className="list-grid skills-grid">
         {t.skills.items.map((skill) => (
           <li key={skill} className="card skill-item">
-            {skill}
+            <span className="skill-dot" aria-hidden />
+            <span>{skill}</span>
           </li>
         ))}
       </ul>

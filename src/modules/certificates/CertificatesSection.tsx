@@ -6,8 +6,8 @@ export function CertificatesSection() {
   const { t } = useI18n()
 
   return (
-    <Section id={t.certificates.id} title={t.certificates.title}>
-      <ul className="list-grid">
+    <Section id={t.certificates.id} title={t.certificates.title} lead={t.certificates.lead}>
+      <ul className="list-grid cert-grid">
         {t.certificates.items.map((certificate) => (
           <li key={certificate.title} className="card cert-item">
             <strong>{certificate.title}</strong>
