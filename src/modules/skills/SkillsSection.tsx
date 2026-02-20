@@ -1,13 +1,17 @@
 import React from 'react'
 import { Section } from '../../shared/ui/Section'
-import { skills } from './data'
+import { useI18n } from '../../core/i18n'
 
 export function SkillsSection() {
+  const { t } = useI18n()
+
   return (
-    <Section id="skills" title="Skills">
-      <ul className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', marginTop: 16, listStyle: 'none', padding: 0 }}>
-        {skills.map(s => (
-          <li key={s} className="card">{s}</li>
+    <Section id={t.skills.id} title={t.skills.title}>
+      <ul className="list-grid skills-grid">
+        {t.skills.items.map((skill) => (
+          <li key={skill} className="card skill-item">
+            {skill}
+          </li>
         ))}
       </ul>
     </Section>

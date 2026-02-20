@@ -2,29 +2,38 @@ import React from 'react'
 import { Section } from '../../shared/ui/Section'
 import { Card } from '../../shared/ui/Card'
 import { Chip } from '../../shared/ui/Chip'
-import { projects } from './data'
 import { site } from '../../core/config/site'
+import { useI18n } from '../../core/i18n'
 
 export function ProjectsSection() {
+  const { t } = useI18n()
+
   return (
-    <Section id="projetos" title="Projetos">
-      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <a href={site.github} target="_blank" rel="noreferrer" className="p">Ver GitHub →</a>
+    <Section id={t.projects.id} title={t.projects.title}>
+      <div className="section-toolbar">
+        <a href={site.github} target="_blank" rel="noreferrer" className="toolbar-link">
+          {t.projects.githubLabel} →
+        </a>
       </div>
-      <div className="grid grid-2" style={{ marginTop: 24 }}>
-        {projects.map((p) => (
-          <Card key={p.name}>
-            <h3 style={{ margin: 0, fontWeight: 600 }}>{p.name}</h3>
-            <p className="p" style={{ marginTop: 6 }}>{p.desc}</p>
-            <div style={{ marginTop: 10, display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-              {p.tags.map(t => <Chip key={t}>{t}</Chip>)}
+
+      <div className="grid grid-2">
+        {t.projects.items.map((project) => (
+          <Card key={project.name}>
+            <h3 className="card-title">{project.name}</h3>
+            <p className="p">{project.desc}</p>
+
+            <div className="chip-row">
+              {project.tags.map((tag) => (
+                <Chip key={tag}>{tag}</Chip>
+              ))}
             </div>
-            <button>Preview</button>
+
+            <a className="cta cta-secondary card-cta" href={project.href} target="_blank" rel="noreferrer">
+              {t.projects.codeLabel}
+            </a>
           </Card>
         ))}
       </div>
     </Section>
   )
 }
-
-// OBS: O botão preview vai servir para apresentar uma parte do projeto, ao menos o frontend

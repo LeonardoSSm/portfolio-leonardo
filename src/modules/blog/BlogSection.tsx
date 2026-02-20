@@ -1,16 +1,19 @@
 import React from 'react'
 import { Section } from '../../shared/ui/Section'
-import { posts } from './data'
+import { useI18n } from '../../core/i18n'
 
 export function BlogSection() {
+  const { locale, t } = useI18n()
+  const dateLocale = locale === 'en' ? 'en-US' : 'pt-BR'
+
   return (
-    <Section id="blog" title="Blog">
-      <ul className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', marginTop: 16, listStyle: 'none', padding: 0 }}>
-        {posts.map((p) => (
-          <li key={p.slug} className="card">
-            <h3 style={{ margin: 0, fontWeight: 600 }}>{p.title}</h3>
-            <div className="p" style={{ fontSize: 12, marginTop: 4 }}>{new Date(p.date).toLocaleDateString('pt-BR')}</div>
-            <p className="p" style={{ marginTop: 8 }}>{p.summary}</p>
+    <Section id={t.blog.id} title={t.blog.title}>
+      <ul className="list-grid blog-grid">
+        {t.blog.items.map((post) => (
+          <li key={post.slug} className="card">
+            <h3 className="card-title">{post.title}</h3>
+            <div className="p tiny">{new Date(post.date).toLocaleDateString(dateLocale)}</div>
+            <p className="p">{post.summary}</p>
           </li>
         ))}
       </ul>

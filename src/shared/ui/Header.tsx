@@ -1,18 +1,11 @@
 import React from 'react'
 import { site } from '../../core/config/site'
+import { useI18n } from '../../core/i18n'
 import { smoothScrollTo, highlightById } from '../lib/scroll'
 
-const items = [
-  { href: '#inicio', label: 'Início' },
-  { href: '#sobre', label: 'Sobre' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#projetos', label: 'Projetos' },
-  { href: '#certificados', label: 'Certificados' },
-  { href: '#blog', label: 'Blog' },
-  { href: '#contato', label: 'Contato' },
-] as const
-
 export function Header() {
+  const { locale, setLocale, t } = useI18n()
+
   function onNavClick(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
     if (!href.startsWith('#')) return
     e.preventDefault()
@@ -24,16 +17,35 @@ export function Header() {
   return (
     <header className="header">
       <div className="container header-row">
-        <a href="#inicio" style={{ fontWeight: 600, letterSpacing: '.1px' }} onClick={(e) => onNavClick(e, '#inicio')}>
-          {site.owner}
+        <a className="brand" href="#home" onClick={(e) => onNavClick(e, '#home')}>
+          <span className="brand-name">{site.owner}</span>
+          <span className="brand-role">{t.ownerRole}</span>
         </a>
-        <nav className="nav">
-          {items.map((it) => (
-            <a key={it.href} href={it.href} onClick={(e) => onNavClick(e, it.href)}>
-              {it.label}
+
+        <nav className="nav" aria-label="Main">
+          {t.nav.map((item) => (
+            <a key={item.href} className="nav-link" href={item.href} onClick={(e) => onNavClick(e, item.href)}>
+              {item.label}
             </a>
           ))}
         </nav>
+
+        <div className="lang-switch" aria-label={t.languageLabel}>
+          <button
+            type="button"
+            className={`lang-btn ${locale === 'pt-BR' ? 'is-active' : ''}`}
+            onClick={() => setLocale('pt-BR')}
+          >
+            PT
+          </button>
+          <button
+            type="button"
+            className={`lang-btn ${locale === 'en' ? 'is-active' : ''}`}
+            onClick={() => setLocale('en')}
+          >
+            EN
+          </button>
+        </div>
       </div>
     </header>
   )

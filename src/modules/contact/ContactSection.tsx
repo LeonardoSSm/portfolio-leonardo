@@ -1,15 +1,24 @@
 import React from 'react'
 import { Section } from '../../shared/ui/Section'
 import { site } from '../../core/config/site'
+import { useI18n } from '../../core/i18n'
 
 export function ContactSection() {
+  const { t } = useI18n()
+
   return (
-    <Section id="contato" title="Contato">
-      <p className="p" style={{ marginTop: 8 }}>Aberto para freelas, propostas e colabs.</p>
-      <div style={{ marginTop: 12, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-        <a className="cta cta-secondary" href={`mailto:${site.email}`}>Email</a>
-        <a className="cta cta-secondary" href={site.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
-        <a className="cta cta-secondary" href={site.github} target="_blank" rel="noreferrer">GitHub</a>
+    <Section id={t.contact.id} title={t.contact.title}>
+      <p className="p section-intro">{t.contact.lead}</p>
+      <div className="contact-actions">
+        <a className="cta cta-secondary" href={`mailto:${site.email}`}>
+          {t.contact.emailLabel}
+        </a>
+        <a className="cta cta-secondary" href={site.linkedin} target="_blank" rel="noreferrer">
+          {t.contact.linkedinLabel}
+        </a>
+        <a className="cta cta-secondary" href={site.github} target="_blank" rel="noreferrer">
+          {t.contact.githubLabel}
+        </a>
       </div>
     </Section>
   )

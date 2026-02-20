@@ -1,15 +1,17 @@
 import React from 'react'
 import { Section } from '../../shared/ui/Section'
-import { certificates } from './data'
+import { useI18n } from '../../core/i18n'
 
 export function CertificatesSection() {
+  const { t } = useI18n()
+
   return (
-    <Section id="certificados" title="Certificados">
-      <ul className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', marginTop: 16, listStyle: 'none', padding: 0 }}>
-        {certificates.map((c) => (
-          <li key={c.title} className="card">
-            <strong>{c.title}</strong>
-            <div className="p" style={{ marginTop: 6 }}>{c.issuer}</div>
+    <Section id={t.certificates.id} title={t.certificates.title}>
+      <ul className="list-grid">
+        {t.certificates.items.map((certificate) => (
+          <li key={certificate.title} className="card cert-item">
+            <strong>{certificate.title}</strong>
+            <span className="p cert-issuer">{certificate.issuer}</span>
           </li>
         ))}
       </ul>

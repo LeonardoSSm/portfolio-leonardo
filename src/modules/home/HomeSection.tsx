@@ -1,32 +1,39 @@
 import React from 'react'
 import { Section } from '../../shared/ui/Section'
 import { Card } from '../../shared/ui/Card'
+import { smoothScrollTo, highlightById } from '../../shared/lib/scroll'
+import { useI18n } from '../../core/i18n'
 
 export function HomeSection() {
-  const buildLog = [
-    '// Último build',
-    '$ docker compose up -d',
-    '$ mvn -q test',
-    '> 142 testes OK'
-  ].join('\n')
+  const { t } = useI18n()
+
+  const buildLog = t.home.buildLog.join('\n')
+
+  function onActionClick(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
+    e.preventDefault()
+    smoothScrollTo(href)
+    highlightById(href)
+  }
 
   return (
-    <Section id="inicio">
-      <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', alignItems: 'center', gap: 24 }}>
+    <Section id={t.home.id}>
+      <div className="hero-grid">
         <div>
-          <h1 className="h1">Backend Java, arquitetura limpa e projetos que resolvem problemas de verdade.</h1>
-          <p className="p" style={{ marginTop: 12 }}>Spring Boot · Java 21 · Docker · PostgreSQL · AWS (iniciante)</p>
-          <div style={{ marginTop: 16, display: 'flex', gap: 12 }}>
-            <a className="cta cta-primary" href="#projetos" onClick={(e) => { e.preventDefault(); import('../../shared/lib/scroll').then(m => { m.smoothScrollTo('#projetos'); m.highlightById('#projetos') }) }}>
-                Ver projetos
+          <h1 className="h1">{t.home.title}</h1>
+          <p className="p section-intro">{t.home.stackLine}</p>
+
+          <div className="hero-actions">
+            <a className="cta cta-primary" href="#projects" onClick={(e) => onActionClick(e, '#projects')}>
+              {t.home.primaryCta}
             </a>
-            <a className="cta cta-secondary" href="#contato" onClick={(e) => { e.preventDefault(); import('../../shared/lib/scroll').then(m => { m.smoothScrollTo('#contato'); m.highlightById('#contato') }) }}>
-                Contato
+            <a className="cta cta-secondary" href="#contact" onClick={(e) => onActionClick(e, '#contact')}>
+              {t.home.secondaryCta}
             </a>
           </div>
         </div>
+
         <Card>
-          <pre style={{ fontSize: 12, margin: 0, whiteSpace: 'pre-wrap' }}>{buildLog}</pre>
+          <pre className="hero-log">{buildLog}</pre>
         </Card>
       </div>
     </Section>
