@@ -15,8 +15,8 @@ export function Footer() {
 
         <div className="footer-links">
           <a href={`mailto:${site.email}`}>{t.contact.emailLabel}</a>
-          <a href={site.linkedin} target="_blank" rel="noreferrer">{t.contact.linkedinLabel}</a>
-          <a href={site.github} target="_blank" rel="noreferrer">{t.contact.githubLabel}</a>
+          <a href={site.linkedin} target="_blank" rel="noopener noreferrer">{t.contact.linkedinLabel}</a>
+          <a href={site.github} target="_blank" rel="noopener noreferrer">{t.contact.githubLabel}</a>
         </div>
       </div>
     </footer>

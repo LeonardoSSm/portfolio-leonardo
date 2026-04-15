@@ -12,7 +12,7 @@ export function ProjectsSection() {
   return (
     <Section id={t.projects.id} title={t.projects.title} lead={t.projects.lead}>
       <div className="section-toolbar">
-        <a href={site.github} target="_blank" rel="noreferrer" className="toolbar-link">
+        <a href={site.github} target="_blank" rel="noopener noreferrer" className="toolbar-link">
           {t.projects.githubLabel} →
         </a>
       </div>
@@ -29,7 +29,7 @@ export function ProjectsSection() {
             ))}
           </div>
 
-          <a className="cta cta-primary card-cta" href={featured.href} target="_blank" rel="noreferrer">
+          <a className="cta cta-primary card-cta" href={featured.href} target="_blank" rel="noopener noreferrer">
             {t.projects.codeLabel}
           </a>
         </Card>
@@ -47,7 +47,7 @@ export function ProjectsSection() {
               ))}
             </div>
 
-            <a className="cta cta-secondary card-cta" href={project.href} target="_blank" rel="noreferrer">
+            <a className="cta cta-secondary card-cta" href={project.href} target="_blank" rel="noopener noreferrer">
               {t.projects.codeLabel}
             </a>
           </Card>

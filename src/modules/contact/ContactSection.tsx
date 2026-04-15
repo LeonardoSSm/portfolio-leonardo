@@ -13,10 +13,10 @@ export function ContactSection() {
         <a className="cta cta-primary" href={`mailto:${site.email}`}>
           {t.contact.emailLabel}
         </a>
-        <a className="cta cta-secondary" href={site.linkedin} target="_blank" rel="noreferrer">
+        <a className="cta cta-secondary" href={site.linkedin} target="_blank" rel="noopener noreferrer">
           {t.contact.linkedinLabel}
         </a>
-        <a className="cta cta-secondary" href={site.github} target="_blank" rel="noreferrer">
+        <a className="cta cta-secondary" href={site.github} target="_blank" rel="noopener noreferrer">
           {t.contact.githubLabel}
         </a>
       </div>
