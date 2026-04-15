@@ -274,10 +274,9 @@ img {
 }
 
 .hero-portrait {
-  align-self: stretch;
-  min-height: 520px;
-  display: grid;
-  align-content: end;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   border: 1px solid var(--line-strong);
   border-radius: 8px;
@@ -287,9 +286,9 @@ img {
 
 .hero-portrait img {
   width: 100%;
-  height: 100%;
-  min-height: 340px;
+  height: clamp(340px, 38vw, 500px);
   object-fit: cover;
+  object-position: center 32%;
   filter: saturate(0.95) contrast(1.02);
 }
 
@@ -688,7 +687,7 @@ img {
   }
 
   .hero-portrait {
-    min-height: 420px;
+    width: min(520px, 100%);
   }
 
   .grid-4,
@@ -771,7 +770,11 @@ img {
   }
 
   .hero-portrait {
-    min-height: 360px;
+    width: 100%;
+  }
+
+  .hero-portrait img {
+    height: 360px;
   }
 
   .hero-actions,
