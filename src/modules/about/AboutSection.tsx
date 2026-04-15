@@ -7,15 +7,21 @@ export function AboutSection() {
 
   return (
     <Section id={t.about.id} title={t.about.title} lead={t.about.lead}>
-      <p className="p section-intro narrow">{t.about.body}</p>
+      <div className="about-layout">
+        <div className="about-copy">
+          {t.about.paragraphs.map((paragraph) => (
+            <p key={paragraph} className="p">
+              {paragraph}
+            </p>
+          ))}
+        </div>
 
-      <ul className="list-grid about-grid">
-        {t.about.pillars.map((pillar) => (
-          <li key={pillar} className="card about-item">
-            {pillar}
-          </li>
-        ))}
-      </ul>
+        <ul className="proof-list">
+          {t.about.proofPoints.map((point) => (
+            <li key={point}>{point}</li>
+          ))}
+        </ul>
+      </div>
     </Section>
   )
 }

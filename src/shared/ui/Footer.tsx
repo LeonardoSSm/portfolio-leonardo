@@ -8,6 +8,8 @@ export function Footer() {
   return (
     <footer className="footer">
       <div className="container footer-grid">
+        <p className="footer-statement">{t.footerText}</p>
+
         <div className="footer-row">
           <span>© {new Date().getFullYear()} {site.owner}</span>
           <span>{t.footerRights}</span>

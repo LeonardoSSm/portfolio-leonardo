@@ -1,22 +1,25 @@
 import React from 'react'
 import { Section } from '../../shared/ui/Section'
+import { Card } from '../../shared/ui/Card'
 import { useI18n } from '../../core/i18n'
 
 export function BlogSection() {
-  const { locale, t } = useI18n()
-  const dateLocale = locale === 'en' ? 'en-US' : 'pt-BR'
+  const { t } = useI18n()
 
   return (
-    <Section id={t.blog.id} title={t.blog.title} lead={t.blog.lead}>
-      <ul className="list-grid blog-grid">
-        {t.blog.items.map((post) => (
-          <li key={post.slug} className="card blog-item">
-            <h3 className="card-title">{post.title}</h3>
-            <div className="p tiny">{new Date(post.date).toLocaleDateString(dateLocale)}</div>
-            <p className="p">{post.summary}</p>
-          </li>
+    <Section id={t.resources.id} title={t.resources.title} lead={t.resources.lead}>
+      <div className="grid grid-3 resources-grid">
+        {t.resources.groups.map((group) => (
+          <Card key={group.title} className="resource-card">
+            <h3 className="card-title">{group.title}</h3>
+            <ul className="resource-list">
+              {group.items.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </Card>
         ))}
-      </ul>
+      </div>
     </Section>
   )
 }

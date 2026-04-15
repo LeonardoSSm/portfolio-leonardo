@@ -11,7 +11,7 @@ export function ContactSection() {
       <p className="p section-intro">{t.contact.responseNote}</p>
       <div className="contact-actions">
         <a className="cta cta-primary" href={`mailto:${site.email}`}>
-          {t.contact.emailLabel}
+          {t.contact.primaryCta}
         </a>
         <a className="cta cta-secondary" href={site.linkedin} target="_blank" rel="noopener noreferrer">
           {t.contact.linkedinLabel}

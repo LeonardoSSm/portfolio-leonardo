@@ -1,9 +1,10 @@
 import React from 'react'
 import { HomeSection } from '../modules/home/HomeSection'
 import { AboutSection } from '../modules/about/AboutSection'
-import { SkillsSection } from '../modules/skills/SkillsSection'
+import { SolutionsSection } from '../modules/solutions/SolutionsSection'
 import { ProjectsSection } from '../modules/projects/ProjectsSection'
-import { CertificatesSection } from '../modules/certificates/CertificatesSection'
+import { WorkSection } from '../modules/work/WorkSection'
+import { SkillsSection } from '../modules/skills/SkillsSection'
 import { BlogSection } from '../modules/blog/BlogSection'
 import { ContactSection } from '../modules/contact/ContactSection'
 import { Container } from '../shared/ui/Container'
@@ -15,9 +16,10 @@ export default function App() {
         <div className="content-stack">
           <HomeSection />
           <AboutSection />
-          <SkillsSection />
+          <SolutionsSection />
           <ProjectsSection />
-          <CertificatesSection />
+          <WorkSection />
+          <SkillsSection />
           <BlogSection />
           <ContactSection />
         </div>

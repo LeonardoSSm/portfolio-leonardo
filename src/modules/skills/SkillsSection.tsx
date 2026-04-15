@@ -7,14 +7,22 @@ export function SkillsSection() {
 
   return (
     <Section id={t.skills.id} title={t.skills.title} lead={t.skills.lead}>
-      <ul className="list-grid skills-grid">
-        {t.skills.items.map((skill) => (
-          <li key={skill} className="card skill-item">
-            <span className="skill-dot" aria-hidden />
-            <span>{skill}</span>
-          </li>
+      <div className="stack-grid">
+        {t.skills.groups.map((group) => (
+          <section key={group.title} className="stack-group" aria-labelledby={`stack-${group.title}`}>
+            <h3 id={`stack-${group.title}`} className="stack-title">
+              {group.title}
+            </h3>
+            <div className="chip-row stack-chips">
+              {group.items.map((skill) => (
+                <span key={skill} className="chip">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </section>
         ))}
-      </ul>
+      </div>
     </Section>
   )
 }

@@ -7,13 +7,13 @@ import { useI18n } from '../../core/i18n'
 
 export function ProjectsSection() {
   const { t } = useI18n()
-  const [featured, ...others] = t.projects.items
+  const [featured, ...projects] = t.projects.items
 
   return (
     <Section id={t.projects.id} title={t.projects.title} lead={t.projects.lead}>
       <div className="section-toolbar">
         <a href={site.github} target="_blank" rel="noopener noreferrer" className="toolbar-link">
-          {t.projects.githubLabel} →
+          {t.projects.githubLabel}
         </a>
       </div>
 
@@ -21,7 +21,12 @@ export function ProjectsSection() {
         <Card className="project-featured">
           <span className="featured-tag">{t.projects.featuredLabel}</span>
           <h3 className="card-title">{featured.name}</h3>
-          <p className="p">{featured.desc}</p>
+          <p className="p">{featured.context}</p>
+          <ul className="case-list">
+            {featured.highlights.map((highlight) => (
+              <li key={highlight}>{highlight}</li>
+            ))}
+          </ul>
 
           <div className="chip-row">
             {featured.tags.map((tag) => (
@@ -36,10 +41,15 @@ export function ProjectsSection() {
       ) : null}
 
       <div className="grid grid-2 projects-grid">
-        {others.map((project) => (
-          <Card key={project.name}>
+        {projects.map((project) => (
+          <Card key={project.name} className="project-card">
             <h3 className="card-title">{project.name}</h3>
-            <p className="p">{project.desc}</p>
+            <p className="p">{project.context}</p>
+            <ul className="case-list compact">
+              {project.highlights.map((highlight) => (
+                <li key={highlight}>{highlight}</li>
+              ))}
+            </ul>
 
             <div className="chip-row">
               {project.tags.map((tag) => (
@@ -53,6 +63,34 @@ export function ProjectsSection() {
           </Card>
         ))}
       </div>
+
+      <details className="more-cases">
+        <summary>
+          <span>{t.projects.secondaryTitle}</span>
+          <small>{t.projects.secondaryLead}</small>
+        </summary>
+        <div className="grid grid-2 more-cases-grid">
+          {t.projects.secondaryItems.map((project) => (
+            <Card key={project.name} className="project-card">
+              <h3 className="card-title">{project.name}</h3>
+              <p className="p">{project.context}</p>
+              <ul className="case-list compact">
+                {project.highlights.map((highlight) => (
+                  <li key={highlight}>{highlight}</li>
+                ))}
+              </ul>
+              <div className="chip-row">
+                {project.tags.map((tag) => (
+                  <Chip key={tag}>{tag}</Chip>
+                ))}
+              </div>
+              <a className="cta cta-secondary card-cta" href={project.href} target="_blank" rel="noopener noreferrer">
+                {t.projects.codeLabel}
+              </a>
+            </Card>
+          ))}
+        </div>
+      </details>
     </Section>
   )
 }
