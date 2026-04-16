@@ -128,12 +128,12 @@ const ptBr: Dictionary = {
   home: {
     id: 'home',
     badge: 'Full stack com backend forte',
-    title: 'Construo sistemas full stack com backends robustos, integrações confiáveis e foco em estabilidade operacional.',
+    title: 'Sistemas full stack com backend forte, integrações confiáveis e operação estável.',
     subtitle:
-      'Atuo no desenvolvimento de sistemas web, mobile e automações com foco em backend, integrações, regras de negócio e estabilidade operacional.',
-    stackLine: 'React, Next.js, Node.js, NestJS, Java, Spring Boot, PostgreSQL, MySQL, Redis, Docker e observabilidade.',
+      'Desenvolvo web, mobile e automações para fluxos com regras de negócio, integrações e produção real.',
+    stackLine: 'React, Next.js, Node.js, NestJS, Java, Spring Boot, PostgreSQL, MySQL, Redis e Docker.',
     support:
-      'Minha atuação combina visão de arquitetura, contato com usuários-chave e evolução contínua de sistemas que já sustentam rotinas reais.',
+      'Uno arquitetura, contato com usuários-chave e evolução contínua para manter sistemas úteis depois do deploy.',
     primaryCta: 'Ver projetos',
     githubCta: 'Ver GitHub',
     contactCta: 'Falar comigo',
@@ -148,38 +148,38 @@ const ptBr: Dictionary = {
   about: {
     id: 'about',
     title: 'Sobre mim',
-    lead: 'Engenharia prática para sistemas que precisam funcionar, evoluir e apoiar a operação real.',
+    lead: 'Engenharia prática para sistemas que precisam funcionar em operação real.',
     paragraphs: [
-      'Sou desenvolvedor Full Stack com forte atuação em backend, arquitetura de sistemas e evolução de aplicações em produção. Trabalho com soluções web e mobile, integrações, automações e sistemas orientados a regras de negócio complexas.',
-      'Atuo próximo de usuários-chave para entender falhas, propor melhorias, documentar decisões e entregar novas features com impacto real. Ao resolver problemas, priorizo corrigir a causa no código e na arquitetura, evitando soluções paliativas sempre que possível.',
+      'Sou desenvolvedor Full Stack com foco em backend, arquitetura e evolução de aplicações em produção. Trabalho com web, mobile, integrações, automações e regras de negócio complexas.',
+      'Atuo perto de usuários-chave para entender falhas, propor melhorias e corrigir a causa no código e na arquitetura, não apenas o sintoma.',
     ] as const,
     proofPoints: [
-      'Experiência com controle operacional, formulários, KPIs, bots de WhatsApp e sistemas de revezamento.',
-      'Tradução de necessidade operacional em fluxos, validações e software sustentável.',
-      'Investigação de falhas pela causa, não apenas pelo sintoma aparente.',
-      'Conexão entre código, arquitetura, usuário e negócio na mesma conversa.',
+      'Controle operacional, formulários, KPIs, bots e revezamento.',
+      'Necessidade operacional traduzida em fluxos e validações.',
+      'Investigação de causa, não só do sintoma aparente.',
+      'Código, arquitetura, usuário e negócio na mesma conversa.',
     ] as const,
   },
   solutions: {
     id: 'solutions',
     title: 'O que eu resolvo',
-    lead: 'Atuo onde regras de negócio, integrações e operação precisam sair do improviso e virar sistema confiável.',
+    lead: 'Regras, integrações e operação saindo do improviso para software confiável.',
     items: [
       {
         title: 'Backend e arquitetura',
-        desc: 'Desenvolvimento de APIs, autenticação, modelagem de dados, integrações e estruturação de sistemas com foco em confiabilidade e manutenção.',
+        desc: 'APIs, autenticação, dados, integrações e estrutura com foco em manutenção.',
       },
       {
         title: 'Automação e processos',
-        desc: 'Criação de soluções para formulários, notificações, bots, centralização de fluxos e ganho operacional em rotinas do negócio.',
+        desc: 'Formulários, notificações, bots e centralização de fluxos operacionais.',
       },
       {
         title: 'Regras de negócio complexas',
-        desc: 'Implementação de lógicas operacionais com validações específicas, restrições de fluxo e decisões baseadas no contexto real de uso.',
+        desc: 'Validações, restrições e decisões alinhadas ao contexto real de uso.',
       },
       {
         title: 'Observabilidade e evolução',
-        desc: 'Monitoramento, diagnóstico, melhoria contínua e estabilização de sistemas em produção, com foco em identificar e resolver a raiz dos problemas.',
+        desc: 'Monitoramento, diagnóstico e evolução de sistemas em produção.',
       },
     ] as const,
   },
@@ -409,12 +409,12 @@ const en: Dictionary = {
   home: {
     id: 'home',
     badge: 'Full stack with strong backend delivery',
-    title: 'I build full stack systems with robust backends, reliable integrations and production stability in mind.',
+    title: 'Full stack systems with strong backend, reliable integrations and stable operations.',
     subtitle:
-      'I develop web systems, mobile apps and automations with a focus on backend, integrations, business rules and operational stability.',
-    stackLine: 'React, Next.js, Node.js, NestJS, Java, Spring Boot, PostgreSQL, MySQL, Redis, Docker and observability.',
+      'I build web, mobile and automation solutions for flows with business rules, integrations and real production use.',
+    stackLine: 'React, Next.js, Node.js, NestJS, Java, Spring Boot, PostgreSQL, MySQL, Redis and Docker.',
     support:
-      'My work combines architectural judgment, key-user context and continuous evolution of systems that already support real routines.',
+      'I connect architecture, key-user context and continuous evolution to keep systems useful after deployment.',
     primaryCta: 'View projects',
     githubCta: 'View GitHub',
     contactCta: 'Contact me',
@@ -429,38 +429,38 @@ const en: Dictionary = {
   about: {
     id: 'about',
     title: 'About me',
-    lead: 'Practical engineering for systems that need to work, evolve and support real operations.',
+    lead: 'Practical engineering for systems that need to work in real operations.',
     paragraphs: [
-      'I am a Full Stack Developer with strong experience in backend, system architecture and the evolution of production applications. I work on web and mobile solutions, integrations, automations and systems driven by complex business rules.',
-      'I work close to key users to understand failures, propose improvements, document decisions and deliver features with real business impact. When solving problems, I prioritize fixing the cause in code and architecture, avoiding temporary workarounds whenever possible.',
+      'I am a Full Stack Developer focused on backend, architecture and production application evolution. I work with web, mobile, integrations, automation and complex business rules.',
+      'I stay close to key users to understand failures, propose improvements and fix root causes in code and architecture, not just symptoms.',
     ] as const,
     proofPoints: [
-      'Experience with operational control, forms, KPIs, WhatsApp bots and rotation systems.',
-      'Translation of operational needs into flows, validations and maintainable software.',
-      'Failure investigation by root cause, not just by visible symptoms.',
-      'Connection between code, architecture, users and business context.',
+      'Operational control, forms, KPIs, bots and rotation systems.',
+      'Operational needs translated into flows and validations.',
+      'Root-cause investigation, not symptom-only fixes.',
+      'Code, architecture, users and business in the same conversation.',
     ] as const,
   },
   solutions: {
     id: 'solutions',
     title: 'What I solve',
-    lead: 'I work where business rules, integrations and operations need to move from improvisation to reliable software.',
+    lead: 'Rules, integrations and operations moving from improvisation to reliable software.',
     items: [
       {
         title: 'Backend and architecture',
-        desc: 'API development, authentication, data modeling, integrations and system structure focused on reliability and maintainability.',
+        desc: 'APIs, authentication, data, integrations and structure focused on maintenance.',
       },
       {
         title: 'Automation and processes',
-        desc: 'Solutions for forms, notifications, bots, flow centralization and operational gains in business routines.',
+        desc: 'Forms, notifications, bots and centralization of operational flows.',
       },
       {
         title: 'Complex business rules',
-        desc: 'Operational logic with specific validations, flow restrictions and decisions based on real usage context.',
+        desc: 'Validations, restrictions and decisions aligned with real usage context.',
       },
       {
         title: 'Observability and evolution',
-        desc: 'Monitoring, diagnosis, continuous improvement and stabilization of production systems with attention to root causes.',
+        desc: 'Monitoring, diagnosis and evolution of systems already in production.',
       },
     ] as const,
   },
