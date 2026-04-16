@@ -69,6 +69,7 @@ type Dictionary = {
     impactLabel: string
     highlightsLabel: string
     confidentialityLabel: string
+    detailsLabel: string
     secondaryTitle: string
     secondaryLead: string
     items: readonly ProjectItem[]
@@ -196,6 +197,7 @@ const ptBr: Dictionary = {
     impactLabel: 'Impacto',
     highlightsLabel: 'Destaques técnicos',
     confidentialityLabel: 'Nota de confidencialidade',
+    detailsLabel: 'Ver detalhes do case',
     secondaryTitle: 'Projetos públicos e estudos',
     secondaryLead: 'Projetos com caráter autoral ou de estudo, separados dos cases corporativos.',
     items: [
@@ -476,6 +478,7 @@ const en: Dictionary = {
     impactLabel: 'Impact',
     highlightsLabel: 'Technical highlights',
     confidentialityLabel: 'Confidentiality note',
+    detailsLabel: 'View case details',
     secondaryTitle: 'Public projects and studies',
     secondaryLead: 'Personal and study projects separated from corporate cases.',
     items: [

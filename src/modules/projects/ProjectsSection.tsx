@@ -51,6 +51,19 @@ function CaseConfidentialityNote({ title, note }: { title: string; note?: string
   )
 }
 
+function CaseHighlights({ label, highlights, compact = false }: { label: string; highlights: readonly string[]; compact?: boolean }) {
+  return (
+    <div className={`case-highlight-block ${compact ? 'compact' : ''}`}>
+      <strong>{label}</strong>
+      <ul className={`case-list ${compact ? 'compact' : ''}`}>
+        {highlights.map((highlight) => (
+          <li key={highlight}>{highlight}</li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
 export function ProjectsSection() {
   const { t } = useI18n()
   const [featured, ...projects] = t.projects.items
@@ -90,14 +103,7 @@ export function ProjectsSection() {
             labels={labels}
           />
 
-          <div className="case-highlight-block">
-            <strong>{t.projects.highlightsLabel}</strong>
-            <ul className="case-list">
-              {featured.highlights.map((highlight) => (
-                <li key={highlight}>{highlight}</li>
-              ))}
-            </ul>
-          </div>
+          <CaseHighlights label={t.projects.highlightsLabel} highlights={featured.highlights} />
 
           <CaseConfidentialityNote title={t.projects.confidentialityLabel} note={featured.confidentialityNote} />
 
@@ -115,29 +121,14 @@ export function ProjectsSection() {
 
       <div className="grid grid-2 projects-grid">
         {projects.map((project) => (
-          <Card key={project.name} className="project-card">
+          <Card key={project.name} className="project-card compact-case-card">
             <div className="case-heading">
               {project.confidentialityLabel ? <span className="confidentiality-badge">{project.confidentialityLabel}</span> : null}
               <p className="case-type">{project.type}</p>
               <h3 className="card-title">{project.name}</h3>
             </div>
 
-            <CaseDetails
-              context={project.context}
-              problem={project.problem}
-              role={project.role}
-              impact={project.impact}
-              labels={labels}
-            />
-
-            <div className="case-highlight-block compact">
-              <strong>{t.projects.highlightsLabel}</strong>
-              <ul className="case-list compact">
-                {project.highlights.map((highlight) => (
-                  <li key={highlight}>{highlight}</li>
-                ))}
-              </ul>
-            </div>
+            <CaseHighlights label={t.projects.highlightsLabel} highlights={project.highlights.slice(0, 3)} compact />
 
             <CaseConfidentialityNote title={t.projects.confidentialityLabel} note={project.confidentialityNote} />
 
@@ -150,6 +141,17 @@ export function ProjectsSection() {
             <a className="cta cta-secondary card-cta" href={project.href}>
               {project.ctaLabel}
             </a>
+
+            <details className="case-details-toggle">
+              <summary>{t.projects.detailsLabel}</summary>
+              <CaseDetails
+                context={project.context}
+                problem={project.problem}
+                role={project.role}
+                impact={project.impact}
+                labels={labels}
+              />
+            </details>
           </Card>
         ))}
       </div>
@@ -161,25 +163,10 @@ export function ProjectsSection() {
         </summary>
         <div className="grid grid-2 more-cases-grid">
           {t.projects.secondaryItems.map((project) => (
-            <Card key={project.name} className="project-card">
+            <Card key={project.name} className="project-card public-project-card">
               <p className="case-type">{project.type}</p>
               <h3 className="card-title">{project.name}</h3>
-              <CaseDetails
-                context={project.context}
-                problem={project.problem}
-                role={project.role}
-                impact={project.impact}
-                labels={labels}
-              />
-              <div className="case-highlight-block compact">
-                <strong>{t.projects.highlightsLabel}</strong>
-                <ul className="case-list compact">
-                  {project.highlights.map((highlight) => (
-                    <li key={highlight}>{highlight}</li>
-                  ))}
-                </ul>
-              </div>
-              <CaseConfidentialityNote title={t.projects.confidentialityLabel} note={project.confidentialityNote} />
+              <CaseHighlights label={t.projects.highlightsLabel} highlights={project.highlights.slice(0, 3)} compact />
               <div className="chip-row">
                 {project.tags.map((tag) => (
                   <Chip key={tag}>{tag}</Chip>
