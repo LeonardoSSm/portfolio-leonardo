@@ -20,6 +20,7 @@ export function HomeSection() {
           <span className="hero-badge">{t.home.badge}</span>
           <h1 className="h1">{t.home.title}</h1>
           <p className="hero-subtitle">{t.home.subtitle}</p>
+          <p className="hero-stack">{t.home.stackLine}</p>
           <p className="p hero-support">{t.home.support}</p>
 
           <div className="hero-actions">

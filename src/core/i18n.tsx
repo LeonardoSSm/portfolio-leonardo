@@ -7,7 +7,20 @@ export type Locale = 'pt-BR' | 'en'
 type NavItem = { href: string; label: string }
 type MetricItem = { value: string; label: string }
 type TextItem = { title: string; desc: string }
-type ProjectItem = { name: string; context: string; highlights: string[]; tags: string[]; href: string }
+type ProjectItem = {
+  name: string
+  type: string
+  context: string
+  problem: string
+  role: string
+  impact: string
+  highlights: string[]
+  tags: string[]
+  href: string
+  ctaLabel: string
+  confidentialityLabel?: string
+  confidentialityNote?: string
+}
 type SkillGroup = { title: string; items: string[] }
 type ResourceGroup = { title: string; items: string[] }
 
@@ -22,6 +35,7 @@ type Dictionary = {
     badge: string
     title: string
     subtitle: string
+    stackLine: string
     support: string
     primaryCta: string
     githubCta: string
@@ -46,9 +60,15 @@ type Dictionary = {
     id: string
     title: string
     lead: string
+    confidentialityNote: string
     featuredLabel: string
     githubLabel: string
-    codeLabel: string
+    contextLabel: string
+    problemLabel: string
+    roleLabel: string
+    impactLabel: string
+    highlightsLabel: string
+    confidentialityLabel: string
     secondaryTitle: string
     secondaryLead: string
     items: readonly ProjectItem[]
@@ -87,209 +107,286 @@ type Dictionary = {
   footerRights: string
 }
 
+const confidentialMailHref = (project: string) =>
+  `mailto:${site.email}?subject=${encodeURIComponent(`Case: ${project}`)}`
+
 const ptBr: Dictionary = {
   metaTitle: 'Leonardo Sousa | Full Stack Developer',
   metaDescription:
-    'Portfolio de Leonardo Sousa, desenvolvedor full stack com forte atuacao em backend, arquitetura, integracoes, automacao e sistemas orientados a regras de negocio.',
-  ownerRole: 'Full Stack Developer | Backend, arquitetura e operacao',
+    'Portfólio de Leonardo Sousa, desenvolvedor full stack com forte atuação em backend, arquitetura, integrações, automação e sistemas orientados a regras de negócio.',
+  ownerRole: 'Full Stack Developer | Backend, arquitetura e operação',
   languageLabel: 'Idioma',
   nav: [
-    { href: '#home', label: 'Inicio' },
+    { href: '#home', label: 'Início' },
     { href: '#about', label: 'Sobre' },
     { href: '#solutions', label: 'Especialidades' },
     { href: '#projects', label: 'Projetos' },
-    { href: '#resources', label: 'Artigos' },
+    { href: '#resources', label: 'Estudos' },
     { href: '#contact', label: 'Contato' },
   ] as const,
   home: {
     id: 'home',
     badge: 'Full stack com backend forte',
-    title: 'Construo sistemas full stack com backends robustos, integracoes confiaveis e foco em estabilidade operacional.',
+    title: 'Construo sistemas full stack com backends robustos, integrações confiáveis e foco em estabilidade operacional.',
     subtitle:
-      'Atuo com React, Next.js, Node.js, NestJS, Java, Spring Boot, PostgreSQL, MySQL, Redis, Docker e observabilidade para desenvolver sistemas web, mobile, automacoes, bots e solucoes orientadas a regras de negocio reais.',
+      'Atuo no desenvolvimento de sistemas web, mobile e automações com foco em backend, integrações, regras de negócio e estabilidade operacional.',
+    stackLine: 'React, Next.js, Node.js, NestJS, Java, Spring Boot, PostgreSQL, MySQL, Redis, Docker e observabilidade.',
     support:
-      'Minha atuacao combina backend forte, visao de arquitetura, contato com usuarios e evolucao continua de sistemas em producao.',
+      'Minha atuação combina visão de arquitetura, contato com usuários-chave e evolução contínua de sistemas que já sustentam rotinas reais.',
     primaryCta: 'Ver projetos',
     githubCta: 'Ver GitHub',
     contactCta: 'Falar comigo',
     profileAlt: 'Foto profissional de Leonardo Sousa',
     metrics: [
-      { value: 'Backend', label: 'APIs, integracoes e regras de negocio' },
-      { value: 'Operacao', label: 'sustentacao, diagnostico e evolucao' },
-      { value: 'Full stack', label: 'web, mobile, bots e automacoes' },
+      { value: 'Estabilidade', label: 'backend forte com foco em operação e manutenção' },
+      { value: 'Raiz do problema', label: 'correção no código e na arquitetura, não só no banco' },
+      { value: 'Contexto real', label: 'proximidade com usuários, regras e fluxos complexos' },
+      { value: 'Entrega completa', label: 'web, mobile, bots, integrações e automações' },
     ] as const,
   },
   about: {
     id: 'about',
     title: 'Sobre mim',
-    lead: 'Engenharia pratica para sistemas que precisam funcionar, evoluir e apoiar a operacao real.',
+    lead: 'Engenharia prática para sistemas que precisam funcionar, evoluir e apoiar a operação real.',
     paragraphs: [
-      'Sou desenvolvedor Full Stack com forte atuacao em backend, arquitetura de sistemas e evolucao de aplicacoes em producao. Trabalho com solucoes web e mobile, integracoes, automacoes e sistemas orientados a regras de negocio complexas.',
-      'Tenho experiencia em projetos de controle operacional, gestao e centralizacao de formularios, bots de WhatsApp para notificacoes, KPIs, sistemas de revezamento com validacoes especificas de negocio, alem de projetos de estudo na area hospitalar com apoio de IA.',
-      'Tambem atuo diretamente com usuarios-chave, levantamento de falhas, proposta de melhorias, documentacao tecnica e desenvolvimento de novas features com foco em impacto real no negocio. Na resolucao de problemas, minha prioridade e corrigir a causa no codigo e na arquitetura, evitando solucoes paliativas sempre que possivel.',
+      'Sou desenvolvedor Full Stack com forte atuação em backend, arquitetura de sistemas e evolução de aplicações em produção. Trabalho com soluções web e mobile, integrações, automações e sistemas orientados a regras de negócio complexas.',
+      'Atuo próximo de usuários-chave para entender falhas, propor melhorias, documentar decisões e entregar novas features com impacto real. Ao resolver problemas, priorizo corrigir a causa no código e na arquitetura, evitando soluções paliativas sempre que possível.',
     ] as const,
     proofPoints: [
-      'Traduzo necessidade operacional em fluxo, regra e software sustentavel.',
-      'Investigo falhas pela causa, nao apenas pelo sintoma aparente.',
-      'Aproximo codigo, arquitetura, usuario e negocio na mesma conversa.',
+      'Experiência com controle operacional, formulários, KPIs, bots de WhatsApp e sistemas de revezamento.',
+      'Tradução de necessidade operacional em fluxos, validações e software sustentável.',
+      'Investigação de falhas pela causa, não apenas pelo sintoma aparente.',
+      'Conexão entre código, arquitetura, usuário e negócio na mesma conversa.',
     ] as const,
   },
   solutions: {
     id: 'solutions',
     title: 'O que eu resolvo',
-    lead: 'Atuo onde regra de negocio, integracao e operacao precisam sair do improviso e virar sistema confiavel.',
+    lead: 'Atuo onde regras de negócio, integrações e operação precisam sair do improviso e virar sistema confiável.',
     items: [
       {
-        title: 'Backend e Arquitetura',
-        desc: 'Desenvolvimento de APIs, autenticacao, modelagem de dados, integracoes e estruturacao de sistemas com foco em confiabilidade e manutencao.',
+        title: 'Backend e arquitetura',
+        desc: 'Desenvolvimento de APIs, autenticação, modelagem de dados, integrações e estruturação de sistemas com foco em confiabilidade e manutenção.',
       },
       {
-        title: 'Automacao e Processos',
-        desc: 'Criacao de solucoes para formularios, notificacoes, bots, centralizacao de fluxos e ganho operacional em rotinas do negocio.',
+        title: 'Automação e processos',
+        desc: 'Criação de soluções para formulários, notificações, bots, centralização de fluxos e ganho operacional em rotinas do negócio.',
       },
       {
-        title: 'Regras de Negocio Complexas',
-        desc: 'Implementacao de logicas operacionais com validacoes especificas, restricoes de fluxo e tomada de decisao baseada em contexto real de uso.',
+        title: 'Regras de negócio complexas',
+        desc: 'Implementação de lógicas operacionais com validações específicas, restrições de fluxo e decisões baseadas no contexto real de uso.',
       },
       {
-        title: 'Observabilidade e Evolucao',
-        desc: 'Monitoramento, diagnostico, melhoria continua e estabilizacao de sistemas ja em producao, com foco em identificar e resolver a raiz dos problemas.',
+        title: 'Observabilidade e evolução',
+        desc: 'Monitoramento, diagnóstico, melhoria contínua e estabilização de sistemas em produção, com foco em identificar e resolver a raiz dos problemas.',
       },
     ] as const,
   },
   projects: {
     id: 'projects',
     title: 'Projetos em destaque',
-    lead: 'Solucoes construidas com foco em operacao real, organizacao de processos, regras de negocio e evolucao continua.',
+    lead: 'Cases construídos em contextos reais de operação, processos, regras de negócio e evolução contínua.',
+    confidentialityNote:
+      'Alguns projetos apresentados aqui foram desenvolvidos em contexto corporativo e, por isso, não possuem código-fonte público. Nestes casos, apresento o contexto, os desafios, meu papel e os resultados de forma resumida, preservando informações sensíveis.',
     featuredLabel: 'Case em destaque',
-    githubLabel: 'Ver mais no GitHub',
-    codeLabel: 'Abrir repositorio',
-    secondaryTitle: 'Outros estudos e produtos',
-    secondaryLead: 'Cases adicionais ficam recolhidos para manter a pagina principal objetiva.',
+    githubLabel: 'Ver projetos públicos no GitHub',
+    contextLabel: 'Contexto',
+    problemLabel: 'Problema',
+    roleLabel: 'Meu papel',
+    impactLabel: 'Impacto',
+    highlightsLabel: 'Destaques técnicos',
+    confidentialityLabel: 'Nota de confidencialidade',
+    secondaryTitle: 'Projetos públicos e estudos',
+    secondaryLead: 'Projetos com caráter autoral ou de estudo, separados dos cases corporativos.',
     items: [
       {
         name: 'Controle de Descontos e Romaneios',
+        type: 'Sistema interno voltado ao controle operacional de pedidos, descontos e romaneios.',
         context:
-          'Sistema voltado ao controle operacional de pedidos, descontos e romaneios, com foco em confiabilidade dos fluxos, analise de inconsistencias e melhoria continua em ambiente produtivo.',
+          'Sistema interno utilizado para apoiar o controle operacional de pedidos, descontos e romaneios dentro de um fluxo com dependência de estabilidade e consistência de regras.',
+        problem:
+          'O sistema exigia acompanhamento constante de falhas, análise de inconsistências operacionais e evolução de regras de negócio para reduzir retrabalho e melhorar a confiabilidade dos fluxos em produção.',
+        role:
+          'Atuei na sustentação e evolução da solução, corrigindo falhas na raiz, refinando regras de negócio, validando melhorias com usuários-chave e propondo ajustes com foco em estabilidade operacional.',
+        impact:
+          'Maior confiabilidade do fluxo operacional, melhor clareza na identificação de problemas e evolução contínua do sistema com foco em reduzir correções paliativas.',
         highlights: [
-          'regras de negocio ligadas ao processo operacional',
-          'sustentacao e evolucao em producao',
-          'correcao de falhas na raiz',
-          'contato com usuarios-chave para validar melhorias',
+          'backend orientado a regras de negócio',
+          'diagnóstico de falhas em produção',
+          'análise de inconsistências operacionais',
+          'melhoria contínua de fluxo',
+          'proximidade com usuários para validação',
         ],
-        tags: ['Backend', 'Operacao', 'Regras de negocio', 'Producao'],
-        href: site.github,
+        tags: ['Backend', 'Operação', 'Regras de negócio', 'Produção'],
+        href: confidentialMailHref('Controle de Descontos e Romaneios'),
+        ctaLabel: 'Ver case',
+        confidentialityLabel: 'Projeto corporativo confidencial',
+        confidentialityNote:
+          'Por se tratar de um projeto corporativo, o código-fonte e detalhes internos não são públicos.',
       },
       {
-        name: 'Sistema de Revezamento com Regras de Negocio',
+        name: 'Sistema de Revezamento com Regras de Negócio',
+        type: 'Sistema para organizar funcionários e atividades com validações específicas de operação.',
         context:
-          'Sistema para organizacao de funcionarios e atividades com validacoes especificas, contemplando laudos, sexo, carga da atividade e prevencao de repeticao de tarefas pesadas.',
+          'Sistema criado para organizar a distribuição de funcionários e atividades considerando restrições e critérios específicos do ambiente operacional.',
+        problem:
+          'A alocação exigia obedecer regras de negócio sensíveis, como laudos, sexo, carga da atividade e não repetição de tarefas pesadas, reduzindo improviso e erro operacional.',
+        role:
+          'Atuei na modelagem e implementação das regras, estruturação da lógica de distribuição, evolução do sistema e adequação da solução ao contexto real de uso.',
+        impact:
+          'Maior previsibilidade no processo de alocação, melhor aderência às restrições operacionais e redução do risco de decisões inconsistentes no fluxo.',
         highlights: [
-          'logica orientada a restricoes',
-          'validacoes operacionais complexas',
-          'organizacao de alocacao de atividades',
-          'aderencia ao contexto real do negocio',
+          'lógica de negócio orientada a restrições',
+          'validações operacionais complexas',
+          'organização de distribuição de atividades',
+          'aderência a contexto real',
+          'manutenção evolutiva',
         ],
-        tags: ['Validacoes', 'Fluxos', 'Restricoes', 'Operacao'],
-        href: site.github,
+        tags: ['Validações', 'Fluxos', 'Restrições', 'Operação'],
+        href: confidentialMailHref('Sistema de Revezamento com Regras de Negócio'),
+        ctaLabel: 'Ver case',
+        confidentialityLabel: 'Projeto corporativo confidencial',
+        confidentialityNote:
+          'Por se tratar de um projeto corporativo, o código-fonte e detalhes internos não são públicos.',
       },
       {
-        name: 'Plataforma de Formularios e Centralizacao',
+        name: 'Plataforma de Formulários e Centralização',
+        type: 'Solução para criação, organização e centralização de formulários internos.',
         context:
-          'Solucao para criacao, organizacao e centralizacao de formularios, com foco em escalabilidade de uso, padronizacao da informacao e possibilidade de automacao futura.',
+          'Plataforma voltada à centralização de formulários e organização de fluxos de coleta de informação, buscando mais controle, padronização e escalabilidade de uso.',
+        problem:
+          'A necessidade era sair de uma lógica dispersa e pouco estruturada para uma solução mais consistente, capaz de sustentar crescimento, reutilização e futuras automações.',
+        role:
+          'Atuei na estruturação da solução, evolução do produto, organização de fluxos e desenho de uma base preparada para expansão funcional e integrações futuras.',
+        impact:
+          'Maior organização do fluxo de formulários, melhor padronização da informação e base mais sólida para crescimento e automações posteriores.',
         highlights: [
-          'estruturacao modular',
-          'organizacao de fluxos',
-          'visao de produto',
-          'base para integracoes e automacoes',
+          'arquitetura modular',
+          'centralização de processos',
+          'estruturação orientada a produto',
+          'base para automação',
+          'organização escalável da informação',
         ],
-        tags: ['Formularios', 'Modularidade', 'Automacao', 'Produto'],
-        href: site.github,
+        tags: ['Formulários', 'Modularidade', 'Automação', 'Produto'],
+        href: confidentialMailHref('Plataforma de Formulários e Centralização'),
+        ctaLabel: 'Ver case',
+        confidentialityLabel: 'Projeto corporativo confidencial',
+        confidentialityNote:
+          'Por se tratar de um projeto corporativo, o código-fonte e detalhes internos não são públicos.',
       },
       {
-        name: 'Bot de WhatsApp para Notificacoes',
+        name: 'Bot de WhatsApp para Notificações',
+        type: 'Automação para envio de notificações e interação com usuários via WhatsApp.',
         context:
-          'Automacao para envio de notificacoes e interacao com usuarios via WhatsApp, conectando comunicacao com rotinas e eventos do sistema.',
+          'Solução de automação voltada ao envio de notificações e interação com usuários por meio do WhatsApp, integrada a eventos e rotinas internas do sistema.',
+        problem:
+          'Processos de comunicação dependiam de ações manuais ou de menor fluidez, gerando atrito operacional e menor agilidade no contato com usuários.',
+        role:
+          'Atuei na concepção e evolução da solução, conectando notificações automatizadas ao fluxo do sistema e estruturando a comunicação como parte do processo operacional.',
+        impact:
+          'Comunicação mais fluida, redução de etapas manuais e maior eficiência na interação com usuários dentro do fluxo operacional.',
         highlights: [
-          'integracao com fluxos internos',
-          'automacao de comunicacao',
-          'reducao de friccao operacional',
-          'melhoria de experiencia do usuario',
+          'automação de comunicação',
+          'integração com fluxos internos',
+          'melhoria de experiência do usuário',
+          'redução de atrito operacional',
+          'visão de processo aplicada ao software',
         ],
-        tags: ['WhatsApp', 'Integracao', 'Automacao', 'Notificacoes'],
-        href: site.github,
+        tags: ['WhatsApp', 'Integração', 'Automação', 'Notificações'],
+        href: confidentialMailHref('Bot de WhatsApp para Notificações'),
+        ctaLabel: 'Ver case',
+        confidentialityLabel: 'Projeto corporativo confidencial',
+        confidentialityNote:
+          'Por se tratar de um projeto corporativo, o código-fonte e detalhes internos não são públicos.',
       },
     ] as const,
     secondaryItems: [
       {
         name: 'Sistema Hospitalar com Apoio de IA',
+        type: 'Projeto de estudo para fluxo hospitalar com apoio de análise por IA.',
         context:
-          'Projeto de estudo para ambiente hospitalar com fluxo de recepcao, classificacao de risco, atendimento medico, medicacoes, orientacoes e historico clinico persistente.',
-        highlights: ['dominio rico', 'fluxo completo de atendimento', 'historico estruturado', 'IA como apoio a analise'],
-        tags: ['Saude', 'IA', 'Fluxo clinico'],
+          'Estudo com recepção, classificação de risco, atendimento médico, registro de medicações, orientações e histórico clínico persistente.',
+        problem:
+          'Organizar um domínio rico e sensível em um fluxo claro, mantendo a IA como apoio à análise, não como decisão final.',
+        role:
+          'Modelagem do fluxo, estruturação do histórico clínico e desenho do uso de IA como suporte para correlação de sintomas recorrentes.',
+        impact:
+          'Exercício sólido de domínio complexo, persistência de histórico e apoio inteligente à análise clínica.',
+        highlights: ['domínio rico', 'fluxo completo de atendimento', 'histórico estruturado', 'IA como apoio à análise'],
+        tags: ['Saúde', 'IA', 'Fluxo clínico'],
         href: site.github,
+        ctaLabel: 'Detalhes do estudo',
       },
       {
         name: 'Gerenciador de Builds e Equipamentos para Jogos',
+        type: 'Produto autoral para criação e gerenciamento de builds e equipamentos.',
         context:
-          'Ferramenta para criacao e gerenciamento de builds, equipamentos e otimizacao de configuracoes, com foco em organizacao de dados e experiencia do usuario.',
-        highlights: ['estruturacao de dados', 'gerenciamento de configuracoes', 'foco em usabilidade', 'produto digital'],
+          'Ferramenta para organizar dados, configurações e otimização de builds, com foco em usabilidade e experiência do usuário.',
+        problem:
+          'Dar estrutura a dados de jogo que costumam ficar espalhados, facilitando comparação, organização e evolução das configurações.',
+        role:
+          'Desenvolvimento full stack, estruturação de dados, API, painel e fluxo de gerenciamento de configurações.',
+        impact:
+          'Produto mais organizado, com base técnica clara e foco em uso recorrente.',
+        highlights: ['estruturação de dados', 'gerenciamento de configurações', 'foco em usabilidade', 'produto digital'],
         tags: ['React', 'NestJS', 'Dados'],
         href: 'https://github.com/LeonardoSSm/td2-builder',
+        ctaLabel: 'Abrir repositório',
       },
     ] as const,
   },
   work: {
     id: 'work',
-    title: 'Como eu atuo na pratica',
-    lead: 'Trabalho perto do problema, do usuario e da operacao para transformar necessidade real em software sustentavel.',
-    text: 'Minha atuacao vai alem de implementar telas ou endpoints. Eu conecto levantamento, analise, arquitetura, entrega e evolucao para que a solucao continue fazendo sentido depois do primeiro deploy.',
+    title: 'Como eu atuo na prática',
+    lead: 'Trabalho perto do problema, do usuário e da operação para transformar necessidade real em software sustentável.',
+    text: 'Minha atuação vai além de implementar telas ou endpoints. Eu conecto levantamento, análise, arquitetura, entrega e evolução para que a solução continue fazendo sentido depois do primeiro deploy.',
     items: [
-      'Evolucao de sistemas ja em producao.',
-      'Desenvolvimento de solucoes do zero.',
-      'Levantamento de requisitos com usuarios-chave.',
-      'Correcao de problemas na raiz, nao apenas no banco.',
-      'Criacao de novas features com foco em melhoria real.',
-      'Documentacao tecnica e registro estruturado de tarefas.',
+      'Evolução de sistemas já em produção.',
+      'Desenvolvimento de soluções do zero.',
+      'Levantamento de requisitos com usuários-chave.',
+      'Correção de problemas na raiz, não apenas no banco.',
+      'Criação de novas features com foco em melhoria real.',
+      'Documentação técnica e registro estruturado de tarefas.',
       'Trabalho colaborativo com equipe.',
-      'Analise continua do que o sistema pode suportar e evoluir.',
+      'Análise contínua do que o sistema pode suportar e evoluir.',
     ] as const,
   },
   skills: {
     id: 'skills',
     title: 'Stack principal',
-    lead: 'Tecnologias aparecem como suporte para resolver problemas reais, nao como uma vitrine de logos.',
+    lead: 'Tecnologias aparecem como suporte para resolver problemas reais, não como uma vitrine de logos.',
     groups: [
       { title: 'Backend', items: ['Java', 'Spring Boot', 'Node.js', 'NestJS', 'TypeScript'] },
       { title: 'Frontend', items: ['React.js', 'Next.js'] },
       { title: 'Mobile', items: ['React Native', 'Android'] },
       { title: 'Dados e Infra', items: ['PostgreSQL', 'MySQL', 'Redis', 'Docker'] },
-      { title: 'Observabilidade', items: ['Grafana', 'metricas', 'logs', 'monitoramento'] },
-      { title: 'Engenharia', items: ['System design', 'documentacao tecnica', 'IA como apoio a analise', 'estruturacao de entrega'] },
+      { title: 'Observabilidade', items: ['Grafana', 'métricas', 'logs', 'monitoramento'] },
+      { title: 'Engenharia', items: ['System design', 'documentação técnica', 'análise com apoio de IA', 'estruturação de entrega'] },
     ] as const,
   },
   resources: {
     id: 'resources',
-    title: 'Artigos, estudos e certificacoes',
-    lead: 'Conteudo organizado por finalidade: escrita tecnica, certificacoes e trilhas de estudo.',
+    title: 'Estudos e referências técnicas',
+    lead: 'Temas de aprofundamento técnico que sustentam minha prática em backend, arquitetura e operação.',
     groups: [
-      { title: 'Artigos tecnicos', items: ['Arquitetura limpa no dia a dia', 'Observabilidade com Spring Boot Actuator'] },
-      { title: 'Certificacoes', items: ['Spring Security', 'REST com Swagger'] },
-      { title: 'Estudos e trilhas autorais', items: ['Java 21 Roadmap', 'estudos de arquitetura, backend e system design'] },
+      { title: 'Escrita técnica', items: ['Arquitetura limpa no dia a dia', 'Observabilidade com Spring Boot Actuator'] },
+      { title: 'Certificações', items: ['Spring Security', 'REST com Swagger'] },
+      { title: 'Trilhas de estudo', items: ['Java 21 Roadmap', 'arquitetura, backend e system design'] },
     ] as const,
   },
   contact: {
     id: 'contact',
     title: 'Contato',
-    lead: 'Quer conversar sobre backend, arquitetura, integracoes ou evolucao de sistemas?',
-    responseNote: 'Me envie contexto, escopo e objetivo. Respondo com uma visao tecnica direta para o proximo passo.',
+    lead: 'Quer conversar sobre backend, integrações, observabilidade ou evolução de sistemas?',
+    responseNote:
+      'Me envie o contexto, escopo e objetivo. Respondo com uma visão técnica clara para o próximo passo, seja para construir, estabilizar ou evoluir uma solução.',
     primaryCta: 'Entrar em contato',
     emailLabel: 'Email',
     linkedinLabel: 'LinkedIn',
     githubLabel: 'GitHub',
   },
   footerText:
-    'Leonardo Sousa - Desenvolvedor Full Stack com forte atuacao em backend, arquitetura e sistemas orientados a regras de negocio.',
+    'Leonardo Sousa - Desenvolvedor Full Stack com forte atuação em backend, arquitetura e sistemas orientados a regras de negócio.',
   footerRights: 'Todos os direitos reservados.',
 }
 
@@ -304,7 +401,7 @@ const en: Dictionary = {
     { href: '#about', label: 'About' },
     { href: '#solutions', label: 'Expertise' },
     { href: '#projects', label: 'Projects' },
-    { href: '#resources', label: 'Writing' },
+    { href: '#resources', label: 'Studies' },
     { href: '#contact', label: 'Contact' },
   ] as const,
   home: {
@@ -312,17 +409,19 @@ const en: Dictionary = {
     badge: 'Full stack with strong backend delivery',
     title: 'I build full stack systems with robust backends, reliable integrations and production stability in mind.',
     subtitle:
-      'I work with React, Next.js, Node.js, NestJS, Java, Spring Boot, PostgreSQL, MySQL, Redis, Docker and observability to build web systems, mobile apps, automations, bots and solutions shaped by real business rules.',
+      'I develop web systems, mobile apps and automations with a focus on backend, integrations, business rules and operational stability.',
+    stackLine: 'React, Next.js, Node.js, NestJS, Java, Spring Boot, PostgreSQL, MySQL, Redis, Docker and observability.',
     support:
-      'My work combines strong backend foundations, architectural judgment, user context and continuous evolution of systems already running in production.',
+      'My work combines architectural judgment, key-user context and continuous evolution of systems that already support real routines.',
     primaryCta: 'View projects',
     githubCta: 'View GitHub',
     contactCta: 'Contact me',
     profileAlt: 'Professional photo of Leonardo Sousa',
     metrics: [
-      { value: 'Backend', label: 'APIs, integrations and business rules' },
-      { value: 'Operations', label: 'support, diagnosis and evolution' },
-      { value: 'Full stack', label: 'web, mobile, bots and automation' },
+      { value: 'Stability', label: 'strong backend work focused on operations and maintenance' },
+      { value: 'Root cause', label: 'fixes in code and architecture, not database-only patches' },
+      { value: 'Real context', label: 'close work with users, rules and complex flows' },
+      { value: 'Full delivery', label: 'web, mobile, bots, integrations and automation' },
     ] as const,
   },
   about: {
@@ -331,13 +430,13 @@ const en: Dictionary = {
     lead: 'Practical engineering for systems that need to work, evolve and support real operations.',
     paragraphs: [
       'I am a Full Stack Developer with strong experience in backend, system architecture and the evolution of production applications. I work on web and mobile solutions, integrations, automations and systems driven by complex business rules.',
-      'My experience includes operational control systems, form management and centralization, WhatsApp notification bots, KPIs, rotation systems with specific business validations, and study projects in the healthcare domain with AI support.',
-      'I also work directly with key users, issue discovery, improvement proposals, technical documentation and new features focused on real business impact. When solving problems, my priority is to fix the cause in the code and architecture, avoiding temporary workarounds whenever possible.',
+      'I work close to key users to understand failures, propose improvements, document decisions and deliver features with real business impact. When solving problems, I prioritize fixing the cause in code and architecture, avoiding temporary workarounds whenever possible.',
     ] as const,
     proofPoints: [
-      'I translate operational needs into flows, rules and maintainable software.',
-      'I investigate failures by root cause, not only by visible symptoms.',
-      'I connect code, architecture, users and business context in the same conversation.',
+      'Experience with operational control, forms, KPIs, WhatsApp bots and rotation systems.',
+      'Translation of operational needs into flows, validations and maintainable software.',
+      'Failure investigation by root cause, not just by visible symptoms.',
+      'Connection between code, architecture, users and business context.',
     ] as const,
   },
   solutions: {
@@ -346,19 +445,19 @@ const en: Dictionary = {
     lead: 'I work where business rules, integrations and operations need to move from improvisation to reliable software.',
     items: [
       {
-        title: 'Backend and Architecture',
+        title: 'Backend and architecture',
         desc: 'API development, authentication, data modeling, integrations and system structure focused on reliability and maintainability.',
       },
       {
-        title: 'Automation and Processes',
+        title: 'Automation and processes',
         desc: 'Solutions for forms, notifications, bots, flow centralization and operational gains in business routines.',
       },
       {
-        title: 'Complex Business Rules',
+        title: 'Complex business rules',
         desc: 'Operational logic with specific validations, flow restrictions and decisions based on real usage context.',
       },
       {
-        title: 'Observability and Evolution',
+        title: 'Observability and evolution',
         desc: 'Monitoring, diagnosis, continuous improvement and stabilization of production systems with attention to root causes.',
       },
     ] as const,
@@ -366,72 +465,153 @@ const en: Dictionary = {
   projects: {
     id: 'projects',
     title: 'Featured projects',
-    lead: 'Solutions built around real operations, process organization, business rules and continuous evolution.',
+    lead: 'Cases built in real contexts involving operations, processes, business rules and continuous evolution.',
+    confidentialityNote:
+      'Some projects shown here were developed in corporate contexts and therefore do not have public source code. In these cases, I present context, challenges, my role and results in summary form while preserving sensitive information.',
     featuredLabel: 'Featured case',
-    githubLabel: 'See more on GitHub',
-    codeLabel: 'Open repository',
-    secondaryTitle: 'Additional studies and products',
-    secondaryLead: 'Additional cases stay collapsed so the main page remains focused.',
+    githubLabel: 'See public projects on GitHub',
+    contextLabel: 'Context',
+    problemLabel: 'Problem',
+    roleLabel: 'My role',
+    impactLabel: 'Impact',
+    highlightsLabel: 'Technical highlights',
+    confidentialityLabel: 'Confidentiality note',
+    secondaryTitle: 'Public projects and studies',
+    secondaryLead: 'Personal and study projects separated from corporate cases.',
     items: [
       {
         name: 'Discount and Delivery Manifest Control',
+        type: 'Internal system for operational control of orders, discounts and delivery manifests.',
         context:
-          'Operational system for orders, discounts and delivery manifests, focused on reliable flows, inconsistency analysis and continuous improvement in production.',
+          'Internal system used to support operational control of orders, discounts and delivery manifests in a flow that depends on stability and consistent rules.',
+        problem:
+          'The system required constant failure tracking, operational inconsistency analysis and business-rule evolution to reduce rework and improve production-flow reliability.',
+        role:
+          'I worked on support and evolution of the solution, fixing root causes, refining business rules, validating improvements with key users and proposing changes focused on operational stability.',
+        impact:
+          'Higher reliability in the operational flow, clearer problem identification and continuous system evolution focused on reducing temporary fixes.',
         highlights: [
-          'business rules tied to operational process',
-          'production support and evolution',
-          'root-cause issue resolution',
-          'work with key users to validate improvements',
+          'business-rule-driven backend',
+          'production failure diagnosis',
+          'operational inconsistency analysis',
+          'continuous flow improvement',
+          'close validation with users',
         ],
         tags: ['Backend', 'Operations', 'Business rules', 'Production'],
-        href: site.github,
+        href: confidentialMailHref('Discount and Delivery Manifest Control'),
+        ctaLabel: 'View case',
+        confidentialityLabel: 'Confidential corporate project',
+        confidentialityNote:
+          'Because this is a corporate project, the source code and internal details are not public.',
       },
       {
         name: 'Rotation System with Business Rules',
+        type: 'System for organizing employees and activities with specific operational validations.',
         context:
-          'System for organizing employees and activities with specific validations, including medical reports, gender, activity load and prevention of repeated heavy tasks.',
+          'System created to organize employee and activity distribution while considering specific restrictions and criteria from the operational environment.',
+        problem:
+          'Allocation needed to follow sensitive business rules such as medical reports, gender, activity load and avoiding repeated heavy tasks, reducing improvisation and operational errors.',
+        role:
+          'I worked on rule modeling and implementation, distribution logic structure, system evolution and adaptation of the solution to the real usage context.',
+        impact:
+          'More predictable allocation, better adherence to operational restrictions and lower risk of inconsistent decisions in the flow.',
         highlights: [
-          'constraint-driven logic',
+          'constraint-driven business logic',
           'complex operational validations',
-          'activity allocation organization',
-          'fit with real business context',
+          'activity distribution organization',
+          'fit with real-world context',
+          'evolutionary maintenance',
         ],
         tags: ['Validations', 'Flows', 'Constraints', 'Operations'],
-        href: site.github,
+        href: confidentialMailHref('Rotation System with Business Rules'),
+        ctaLabel: 'View case',
+        confidentialityLabel: 'Confidential corporate project',
+        confidentialityNote:
+          'Because this is a corporate project, the source code and internal details are not public.',
       },
       {
         name: 'Forms and Centralization Platform',
+        type: 'Solution for creating, organizing and centralizing internal forms.',
         context:
-          'Solution for creating, organizing and centralizing forms, focused on scalable usage, information standardization and future automation.',
-        highlights: ['modular structure', 'flow organization', 'product thinking', 'foundation for integrations and automation'],
+          'Platform focused on centralizing forms and organizing information collection flows, seeking more control, standardization and scalability of use.',
+        problem:
+          'The need was to move away from scattered and weakly structured processes toward a more consistent solution able to support growth, reuse and future automation.',
+        role:
+          'I worked on solution structure, product evolution, flow organization and a foundation prepared for functional expansion and future integrations.',
+        impact:
+          'Better organization of form flows, improved information standardization and a stronger foundation for future growth and automation.',
+        highlights: [
+          'modular architecture',
+          'process centralization',
+          'product-oriented structure',
+          'automation-ready foundation',
+          'scalable information organization',
+        ],
         tags: ['Forms', 'Modularity', 'Automation', 'Product'],
-        href: site.github,
+        href: confidentialMailHref('Forms and Centralization Platform'),
+        ctaLabel: 'View case',
+        confidentialityLabel: 'Confidential corporate project',
+        confidentialityNote:
+          'Because this is a corporate project, the source code and internal details are not public.',
       },
       {
         name: 'WhatsApp Notification Bot',
+        type: 'Automation for notifications and user interaction through WhatsApp.',
         context:
-          'Automation for notifications and user interaction through WhatsApp, connecting communication with routines and system events.',
-        highlights: ['integration with internal flows', 'communication automation', 'lower operational friction', 'better user experience'],
+          'Automation solution for sending notifications and interacting with users through WhatsApp, integrated with internal system events and routines.',
+        problem:
+          'Communication processes depended on manual actions or less fluid flows, creating operational friction and slower contact with users.',
+        role:
+          'I worked on conception and evolution of the solution, connecting automated notifications to the system flow and structuring communication as part of the operational process.',
+        impact:
+          'More fluid communication, fewer manual steps and greater efficiency in user interaction within the operational flow.',
+        highlights: [
+          'communication automation',
+          'internal flow integration',
+          'user experience improvement',
+          'lower operational friction',
+          'process-oriented software view',
+        ],
         tags: ['WhatsApp', 'Integration', 'Automation', 'Notifications'],
-        href: site.github,
+        href: confidentialMailHref('WhatsApp Notification Bot'),
+        ctaLabel: 'View case',
+        confidentialityLabel: 'Confidential corporate project',
+        confidentialityNote:
+          'Because this is a corporate project, the source code and internal details are not public.',
       },
     ] as const,
     secondaryItems: [
       {
         name: 'Healthcare System with AI Support',
+        type: 'Study project for a healthcare flow with AI-assisted analysis.',
         context:
-          'Study project for a healthcare environment with reception, risk classification, medical care, medication records, guidance and persistent clinical history.',
-        highlights: ['rich domain', 'complete care flow', 'structured clinical history', 'AI as analysis support'],
+          'Study covering reception, risk classification, medical care, medication records, guidance and persistent clinical history.',
+        problem:
+          'Organize a rich and sensitive domain into a clear flow while keeping AI as analysis support, not as final decision-making.',
+        role:
+          'Flow modeling, clinical history structure and design of AI usage as support for recurring symptom correlation.',
+        impact:
+          'Solid domain exercise involving complex flow, persistent history and intelligent support for clinical analysis.',
+        highlights: ['rich domain', 'complete care flow', 'structured clinical history', 'AI-assisted analysis'],
         tags: ['Healthcare', 'AI', 'Clinical flow'],
         href: site.github,
+        ctaLabel: 'Study details',
       },
       {
         name: 'Game Build and Equipment Manager',
+        type: 'Personal product for creating and managing builds and equipment.',
         context:
-          'Tool for creating and managing builds, equipment and configuration optimization, focused on data organization and user experience.',
-        highlights: ['data structure', 'configuration management', 'usability focus', 'product-oriented project'],
+          'Tool for organizing data, configurations and build optimization, focused on usability and user experience.',
+        problem:
+          'Give structure to game data that is usually scattered, making comparison, organization and configuration evolution easier.',
+        role:
+          'Full stack development, data structure, API, dashboard and configuration management flow.',
+        impact:
+          'More organized product, clear technical foundation and focus on repeated use.',
+        highlights: ['data structure', 'configuration management', 'usability focus', 'digital product'],
         tags: ['React', 'NestJS', 'Data'],
         href: 'https://github.com/LeonardoSSm/td2-builder',
+        ctaLabel: 'Open repository',
       },
     ] as const,
   },
@@ -466,19 +646,20 @@ const en: Dictionary = {
   },
   resources: {
     id: 'resources',
-    title: 'Articles, studies and certifications',
-    lead: 'Technical writing, certificates and study tracks separated by purpose.',
+    title: 'Studies and technical references',
+    lead: 'Technical themes that support my practice in backend, architecture and operations.',
     groups: [
-      { title: 'Technical articles', items: ['Clean architecture in day-to-day work', 'Observability with Spring Boot Actuator'] },
+      { title: 'Technical writing', items: ['Clean architecture in day-to-day work', 'Observability with Spring Boot Actuator'] },
       { title: 'Certifications', items: ['Spring Security', 'REST with Swagger'] },
-      { title: 'Studies and personal tracks', items: ['Java 21 Roadmap', 'architecture, backend and system design studies'] },
+      { title: 'Study tracks', items: ['Java 21 Roadmap', 'architecture, backend and system design'] },
     ] as const,
   },
   contact: {
     id: 'contact',
     title: 'Contact',
-    lead: 'Want to talk about backend, architecture, integrations or system evolution?',
-    responseNote: 'Share the context, scope and goal. I will reply with a direct technical view for the next step.',
+    lead: 'Want to talk about backend, integrations, observability or system evolution?',
+    responseNote:
+      'Share the context, scope and goal. I will reply with a clear technical view for the next step, whether the need is to build, stabilize or evolve a solution.',
     primaryCta: 'Get in touch',
     emailLabel: 'Email',
     linkedinLabel: 'LinkedIn',
