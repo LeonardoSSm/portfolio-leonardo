@@ -1,37 +1,76 @@
 import React from 'react'
-import { site } from '../../core/config/site'
 import { useI18n } from '../../core/i18n'
 
-function isExternalLink(href: string) {
-  return href.startsWith('http')
-}
+const projectsCopy = {
+  'pt-BR': {
+    kicker: '// 02 — PROJETOS',
+    title: 'Trabalhos selecionados.',
+    subtitle: 'Uma amostra de projetos pessoais e profissionais em formato mais direto e visual.',
+    primary: 'Demo',
+    secondary: 'Codigo',
+    items: [
+      {
+        name: 'Plataforma SaaS',
+        description: 'Dashboard multi-tenant com autenticacao, billing e metricas em tempo real.',
+        stack: ['React', 'Node', 'PostgreSQL', 'Stripe'],
+      },
+      {
+        name: 'API de Logistica',
+        description: 'Servico REST de roteirizacao com filas assincronas e cache distribuido.',
+        stack: ['Node', 'Fastify', 'Redis', 'Docker'],
+      },
+      {
+        name: 'App Mobile Web',
+        description: 'PWA responsivo com modo offline e sincronizacao em background.',
+        stack: ['React', 'TypeScript', 'Vite', 'IndexedDB'],
+      },
+    ],
+  },
+  en: {
+    kicker: '// 02 — PROJECTS',
+    title: 'Selected work.',
+    subtitle: 'A direct and visual sample of personal and professional projects.',
+    primary: 'Demo',
+    secondary: 'Code',
+    items: [
+      {
+        name: 'SaaS Platform',
+        description: 'Multi-tenant dashboard with auth, billing and real-time metrics.',
+        stack: ['React', 'Node', 'PostgreSQL', 'Stripe'],
+      },
+      {
+        name: 'Logistics API',
+        description: 'Routing REST service with async queues and distributed cache.',
+        stack: ['Node', 'Fastify', 'Redis', 'Docker'],
+      },
+      {
+        name: 'Mobile Web App',
+        description: 'Responsive PWA with offline mode and background sync.',
+        stack: ['React', 'TypeScript', 'Vite', 'IndexedDB'],
+      },
+    ],
+  },
+} as const
 
 export function ProjectsSection() {
-  const { t, locale } = useI18n()
-  const projects = [...t.projects.items, ...t.projects.secondaryItems]
+  const { locale } = useI18n()
+  const copy = projectsCopy[locale]
 
   return (
-    <section id={t.projects.id} className="canvas-section projects-section">
+    <section id="projects" className="canvas-section projects-section">
       <div className="container">
         <div className="section-kicker">
           <span className="section-kicker-line" />
-          <span className="section-kicker-text">{locale === 'en' ? '// 02 — PROJECTS' : '// 02 — PROJETOS'}</span>
+          <span className="section-kicker-text">{copy.kicker}</span>
         </div>
 
         <div className="section-heading-row">
-          <div>
-            <h2 className="section-title">{t.projects.title}</h2>
-            <p className="section-support">{t.projects.lead}</p>
-          </div>
-          <a className="section-inline-link" href={site.github} target="_blank" rel="noopener noreferrer">
-            {t.projects.githubLabel}
-          </a>
+          <h2 className="section-title">{copy.title}</h2>
+          <p className="section-support section-support-compact">{copy.subtitle}</p>
         </div>
 
-        <p className="projects-confidentiality-note">{t.projects.confidentialityNote}</p>
-
         <div className="projects-grid">
-          {projects.map((project, index) => (
+          {copy.items.map((project, index) => (
             <article key={project.name} className="project-card">
               <div className="project-preview">
                 <div className="project-preview-grid" aria-hidden />
@@ -40,44 +79,22 @@ export function ProjectsSection() {
               </div>
 
               <div className="project-body">
-                <div className="project-head">
-                  {project.confidentialityLabel ? <span className="project-badge">{project.confidentialityLabel}</span> : null}
-                  <p className="project-type">{project.type}</p>
-                  <h3>{project.name}</h3>
-                </div>
+                <h3>{project.name}</h3>
+                <p className="project-description">{project.description}</p>
 
-                <p className="project-description">{project.problem}</p>
-
-                <div className="project-highlights">
-                  {project.highlights.slice(0, 4).map((highlight) => (
-                    <span key={highlight}>{highlight}</span>
-                  ))}
-                </div>
-
-                <div className="project-tags">
-                  {project.tags.map((tag) => (
-                    <span key={tag} className="project-tag">
-                      {tag}
-                    </span>
+                <div className="project-stack-row">
+                  {project.stack.map((item) => (
+                    <span key={item}>{item}</span>
                   ))}
                 </div>
 
                 <div className="project-links">
-                  <a
-                    href={project.href}
-                    className="project-link project-link-primary"
-                    target={isExternalLink(project.href) ? '_blank' : undefined}
-                    rel={isExternalLink(project.href) ? 'noopener noreferrer' : undefined}
-                  >
-                    {project.ctaLabel}
+                  <a href="#contact" className="project-link project-link-primary">
+                    {copy.primary}
                   </a>
-                  {isExternalLink(project.href) ? (
-                    <a href={site.github} className="project-link" target="_blank" rel="noopener noreferrer">
-                      {t.contact.githubLabel}
-                    </a>
-                  ) : (
-                    <span className="project-link project-link-muted">{t.projects.confidentialityLabel}</span>
-                  )}
+                  <a href="#contact" className="project-link">
+                    {copy.secondary}
+                  </a>
                 </div>
               </div>
             </article>

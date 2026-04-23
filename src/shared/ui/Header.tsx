@@ -1,17 +1,38 @@
-import React, { useEffect, useState } from 'react'
-import { site } from '../../core/config/site'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useI18n } from '../../core/i18n'
 import { smoothScrollTo, highlightById } from '../lib/scroll'
 
 export function Header() {
-  const { locale, setLocale, t } = useI18n()
-  const [activeHref, setActiveHref] = useState<string>(t.nav[0]?.href ?? '#home')
+  const { locale, setLocale } = useI18n()
+  const [activeHref, setActiveHref] = useState('#about')
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
 
-  useEffect(() => {
-    setActiveHref(t.nav[0]?.href ?? '#home')
-  }, [t.nav])
+  const copy = useMemo(
+    () =>
+      locale === 'en'
+        ? {
+            languageLabel: 'Language',
+            cta: "Let's talk",
+            sections: [
+              { href: '#about', label: 'About' },
+              { href: '#projects', label: 'Projects' },
+              { href: '#experience', label: 'Experience' },
+              { href: '#contact', label: 'Contact' },
+            ],
+          }
+        : {
+            languageLabel: 'Idioma',
+            cta: 'Vamos conversar',
+            sections: [
+              { href: '#about', label: 'Sobre' },
+              { href: '#projects', label: 'Projetos' },
+              { href: '#experience', label: 'Experiencia' },
+              { href: '#contact', label: 'Contato' },
+            ],
+          },
+    [locale],
+  )
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
@@ -21,7 +42,7 @@ export function Header() {
   }, [])
 
   useEffect(() => {
-    const targets = t.nav
+    const targets = copy.sections
       .map((item) => document.getElementById(item.href.replace('#', '')))
       .filter((element): element is HTMLElement => Boolean(element))
 
@@ -37,13 +58,12 @@ export function Header() {
           setActiveHref(`#${visible[0].target.id}`)
         }
       },
-      { rootMargin: '-18% 0px -55% 0px', threshold: [0.2, 0.35, 0.5, 0.75] },
+      { rootMargin: '-20% 0px -55% 0px', threshold: [0.2, 0.35, 0.5, 0.75] },
     )
 
     targets.forEach((element) => observer.observe(element))
-
     return () => observer.disconnect()
-  }, [t.nav])
+  }, [copy.sections])
 
   function onNavClick(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
     if (!href.startsWith('#')) return
@@ -57,16 +77,13 @@ export function Header() {
   return (
     <header className={`header ${scrolled ? 'is-scrolled' : ''}`}>
       <div className="container header-row">
-        <a className="brand" href="#home" onClick={(e) => onNavClick(e, '#home')} aria-label={site.owner}>
-          <span className="brand-mark">L</span>
-          <span className="brand-copy">
-            <span className="brand-name">{site.owner}</span>
-            <span className="brand-role">{t.ownerRole}</span>
-          </span>
+        <a className="brand" href="#home" onClick={(e) => onNavClick(e, '#home')} aria-label="Dev portfolio">
+          <span className="brand-mark">D</span>
+          <span className="brand-name">DEV/PORTFOLIO</span>
         </a>
 
         <nav className="nav desktop-nav" aria-label="Main">
-          {t.nav.map((item) => (
+          {copy.sections.map((item) => (
             <a
               key={item.href}
               className={`nav-link ${activeHref === item.href ? 'is-active' : ''}`}
@@ -80,7 +97,7 @@ export function Header() {
         </nav>
 
         <div className="header-actions">
-          <div className="lang-switch" aria-label={t.languageLabel}>
+          <div className="lang-switch" aria-label={copy.languageLabel}>
             <button
               type="button"
               className={`lang-btn ${locale === 'pt-BR' ? 'is-active' : ''}`}
@@ -98,7 +115,7 @@ export function Header() {
           </div>
 
           <a className="header-cta" href="#contact" onClick={(e) => onNavClick(e, '#contact')}>
-            {t.contact.primaryCta}
+            {copy.cta}
           </a>
 
           <button
@@ -119,7 +136,7 @@ export function Header() {
         <div className="mobile-menu">
           <div className="container mobile-menu-inner">
             <nav className="nav mobile-nav" aria-label="Mobile">
-              {t.nav.map((item) => (
+              {copy.sections.map((item) => (
                 <a key={item.href} className="mobile-nav-link" href={item.href} onClick={(e) => onNavClick(e, item.href)}>
                   {item.label}
                 </a>

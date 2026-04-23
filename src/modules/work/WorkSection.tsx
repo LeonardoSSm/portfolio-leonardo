@@ -1,68 +1,90 @@
 import React from 'react'
 import { useI18n } from '../../core/i18n'
 
+const experienceCopy = {
+  'pt-BR': {
+    kicker: '// 03 — EXPERIENCIA',
+    title: 'Trajetoria.',
+    items: [
+      {
+        role: 'Desenvolvedor Fullstack Senior',
+        company: 'Empresa Atual',
+        period: '2023 — Presente',
+        description: 'Lideranca tecnica em produto SaaS, arquitetura, code review e mentoria.',
+      },
+      {
+        role: 'Desenvolvedor Fullstack',
+        company: 'Empresa Anterior',
+        period: '2021 — 2023',
+        description: 'Entrega de features end-to-end em React e Node, com foco em performance.',
+      },
+      {
+        role: 'Desenvolvedor Frontend',
+        company: 'Primeira Empresa',
+        period: '2019 — 2021',
+        description: 'Construcao de interfaces ricas e design systems para produtos B2B.',
+      },
+    ],
+  },
+  en: {
+    kicker: '// 03 — EXPERIENCE',
+    title: 'Trajectory.',
+    items: [
+      {
+        role: 'Senior Fullstack Developer',
+        company: 'Current Company',
+        period: '2023 — Present',
+        description: 'Technical leadership on a SaaS product, architecture, code review and mentoring.',
+      },
+      {
+        role: 'Fullstack Developer',
+        company: 'Previous Company',
+        period: '2021 — 2023',
+        description: 'End-to-end feature delivery in React and Node with focus on performance.',
+      },
+      {
+        role: 'Frontend Developer',
+        company: 'First Company',
+        period: '2019 — 2021',
+        description: 'Built rich interfaces and design systems for B2B products.',
+      },
+    ],
+  },
+} as const
+
 export function WorkSection() {
-  const { t, locale } = useI18n()
+  const { locale } = useI18n()
+  const copy = experienceCopy[locale]
 
   return (
-    <section className="canvas-section work-section">
+    <section id="experience" className="canvas-section work-section">
       <div className="container">
         <div className="section-kicker">
           <span className="section-kicker-line" />
-          <span className="section-kicker-text">{locale === 'en' ? '// 03 — DELIVERY' : '// 03 — ATUACAO'}</span>
+          <span className="section-kicker-text">{copy.kicker}</span>
         </div>
 
-        <h2 id={t.work.id} className="section-title">
-          {t.work.title}
-        </h2>
-        <p className="section-support section-support-wide">{t.work.lead}</p>
+        <h2 className="section-title">{copy.title}</h2>
 
-        <div className="work-layout">
-          <div className="work-intro-panel">
-            <p>{t.work.text}</p>
-          </div>
-
-          <ol className="work-timeline">
-            {t.work.items.map((item, index) => (
-              <li key={item} className="work-timeline-item">
-                <span className="work-timeline-point" aria-hidden>
+        <div className="experience-layout">
+          <div className="experience-spacer" />
+          <ol className="experience-timeline">
+            {copy.items.map((item) => (
+              <li key={`${item.role}-${item.period}`} className="experience-item">
+                <span className="experience-point" aria-hidden>
                   <span />
                 </span>
-                <div className="work-timeline-content">
-                  <div className="work-timeline-head">
-                    <strong>{locale === 'en' ? 'Execution block' : 'Bloco de execucao'}</strong>
-                    <span>{String(index + 1).padStart(2, '0')}</span>
+                <div className="experience-card">
+                  <div className="experience-head">
+                    <h3>{item.role}</h3>
+                    <span>{item.period}</span>
                   </div>
-                  <p>{item}</p>
+                  <p className="experience-company">@ {item.company}</p>
+                  <p className="experience-description">{item.description}</p>
                 </div>
               </li>
             ))}
           </ol>
-        </div>
-
-        <div id={t.resources.id} className="resources-block">
-          <div className="section-kicker section-kicker-secondary">
-            <span className="section-kicker-line" />
-            <span className="section-kicker-text">{locale === 'en' ? '// 03A — STUDIES' : '// 03A — ESTUDOS'}</span>
-          </div>
-
-          <div className="section-heading-row">
-            <h3 className="subsection-title">{t.resources.title}</h3>
-            <p className="subsection-lead">{t.resources.lead}</p>
-          </div>
-
-          <div className="resources-grid">
-            {t.resources.groups.map((group) => (
-              <article key={group.title} className="resource-card">
-                <h4>{group.title}</h4>
-                <ul>
-                  {group.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
         </div>
       </div>
     </section>

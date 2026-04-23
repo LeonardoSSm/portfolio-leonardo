@@ -1,47 +1,74 @@
 import React from 'react'
 import { useI18n } from '../../core/i18n'
 
+const aboutCopy = {
+  'pt-BR': {
+    kicker: '// 01 — SOBRE',
+    title: 'Engenharia com olhar de produto.',
+    bio: [
+      'Trabalho com desenvolvimento web navegando entre frontend e backend para construir solucoes completas, claras e consistentes.',
+      'Meu foco atual esta em aplicacoes React + Node, TypeScript de ponta a ponta, banco relacional e infraestrutura simples e confiavel.',
+    ],
+    skillsTitle: 'Skills',
+    groups: [
+      { title: 'Frontend', items: ['React', 'TypeScript', 'Vite', 'Tailwind', 'Next.js', 'UI Systems'] },
+      { title: 'Backend', items: ['Node.js', 'Fastify', 'Express', 'REST APIs', 'PostgreSQL', 'Redis'] },
+      { title: 'DevOps & Tools', items: ['Docker', 'GitHub Actions', 'Vercel', 'Linux', 'Figma', 'Observability'] },
+    ],
+  },
+  en: {
+    kicker: '// 01 — ABOUT',
+    title: 'Engineering with product eyes.',
+    bio: [
+      'I work across frontend and backend to build complete web products with clarity, speed and consistency.',
+      'My current focus is React + Node applications, end-to-end TypeScript, relational databases and simple, reliable infrastructure.',
+    ],
+    skillsTitle: 'Skills',
+    groups: [
+      { title: 'Frontend', items: ['React', 'TypeScript', 'Vite', 'Tailwind', 'Next.js', 'UI Systems'] },
+      { title: 'Backend', items: ['Node.js', 'Fastify', 'Express', 'REST APIs', 'PostgreSQL', 'Redis'] },
+      { title: 'DevOps & Tools', items: ['Docker', 'GitHub Actions', 'Vercel', 'Linux', 'Figma', 'Observability'] },
+    ],
+  },
+} as const
+
 export function AboutSection() {
-  const { t, locale } = useI18n()
+  const { locale } = useI18n()
+  const copy = aboutCopy[locale]
 
   return (
-    <section id={t.about.id} className="canvas-section about-section">
+    <section id="about" className="canvas-section about-section">
       <div className="container">
         <div className="section-kicker">
           <span className="section-kicker-line" />
-          <span className="section-kicker-text">{locale === 'en' ? '// 01 — ABOUT' : '// 01 — SOBRE'}</span>
+          <span className="section-kicker-text">{copy.kicker}</span>
         </div>
 
-        <h2 className="section-title">{t.about.title}</h2>
+        <h2 className="section-title">{copy.title}</h2>
 
         <div className="about-layout">
           <div className="about-primary">
-            <div className="about-panel">
-              {t.about.paragraphs.map((paragraph) => (
+            <div className="about-visual-panel">
+              <span>DEV</span>
+            </div>
+
+            <div className="about-copy">
+              {copy.bio.map((paragraph) => (
                 <p key={paragraph} className="about-paragraph">
                   {paragraph}
                 </p>
               ))}
             </div>
-
-            <ul className="about-proof-list">
-              {t.about.proofPoints.map((point) => (
-                <li key={point}>{point}</li>
-              ))}
-            </ul>
           </div>
 
           <div className="about-secondary">
-            <div className="about-skills-header">
-              <span>// {t.skills.title}</span>
-              <p>{t.skills.lead}</p>
-            </div>
+            <h3 className="about-side-title">// {copy.skillsTitle}</h3>
 
             <div className="skills-groups">
-              {t.skills.groups.map((group) => (
-                <section key={group.title} className="skill-group-card" aria-labelledby={`skill-${group.title}`}>
+              {copy.groups.map((group) => (
+                <section key={group.title} className="skill-group-card">
                   <div className="skill-group-head">
-                    <h3 id={`skill-${group.title}`}>{group.title}</h3>
+                    <h3>{group.title}</h3>
                     <span>{String(group.items.length).padStart(2, '0')}</span>
                   </div>
                   <div className="skill-chip-row">
@@ -54,28 +81,6 @@ export function AboutSection() {
                 </section>
               ))}
             </div>
-          </div>
-        </div>
-
-        <div id={t.solutions.id} className="solutions-block">
-          <div className="section-kicker section-kicker-secondary">
-            <span className="section-kicker-line" />
-            <span className="section-kicker-text">{locale === 'en' ? '// 01A — EXPERTISE' : '// 01A — ESPECIALIDADES'}</span>
-          </div>
-
-          <div className="section-heading-row">
-            <h3 className="subsection-title">{t.solutions.title}</h3>
-            <p className="subsection-lead">{t.solutions.lead}</p>
-          </div>
-
-          <div className="solutions-grid">
-            {t.solutions.items.map((item, index) => (
-              <article key={item.title} className="solution-card">
-                <span className="solution-index">{String(index + 1).padStart(2, '0')}</span>
-                <h4>{item.title}</h4>
-                <p>{item.desc}</p>
-              </article>
-            ))}
           </div>
         </div>
       </div>
