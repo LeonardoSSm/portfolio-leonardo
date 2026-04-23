@@ -7,18 +7,19 @@ export function Footer() {
 
   return (
     <footer className="footer">
-      <div className="container footer-grid">
-        <p className="footer-statement">{t.footerText}</p>
-
-        <div className="footer-row">
-          <span>© {new Date().getFullYear()} {site.owner}</span>
-          <span>{t.footerRights}</span>
-        </div>
-
+      <div className="container footer-row">
+        <p className="footer-copy">
+          © {new Date().getFullYear()} {site.owner} · {t.footerRights}
+        </p>
+        <p className="footer-built">// {t.footerText}</p>
         <div className="footer-links">
           <a href={`mailto:${site.email}`}>{t.contact.emailLabel}</a>
-          <a href={site.linkedin} target="_blank" rel="noopener noreferrer">{t.contact.linkedinLabel}</a>
-          <a href={site.github} target="_blank" rel="noopener noreferrer">{t.contact.githubLabel}</a>
+          <a href={site.github} target="_blank" rel="noopener noreferrer">
+            {t.contact.githubLabel}
+          </a>
+          <a href={site.linkedin} target="_blank" rel="noopener noreferrer">
+            {t.contact.linkedinLabel}
+          </a>
         </div>
       </div>
     </footer>
